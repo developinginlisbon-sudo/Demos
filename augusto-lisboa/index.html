@@ -180,7 +180,8 @@
   .cm-caps span:last-child{text-align:right}
 
   /* ============ CONTES (palavra chunky + prato + grão) ============ */
-  .contes{position:relative; overflow:hidden; background:var(--cream); min-height:96svh; display:grid; place-items:center; padding:84px 16px}
+  .contes{position:relative; overflow:hidden; min-height:96svh; display:grid; place-items:center; padding:84px 16px;
+    background:radial-gradient(105% 85% at 50% 34%, #fbf4e7 0%, #f1e7d3 56%, #e6d8bf 100%)}
   .cn-word{position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
     font-family:"Alfa Slab One",Georgia,serif; text-transform:uppercase; color:var(--red); line-height:.8; letter-spacing:-.005em; white-space:nowrap}
   .cn-word span{font-size:clamp(118px,45vw,300px)}
@@ -192,8 +193,11 @@
     font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink); font-weight:500}
   .cn-caps span:nth-child(2){text-align:center; flex:1}
   .cn-caps span:last-child{text-align:right}
-  .contes .grainlayer{position:absolute; inset:0; z-index:4; pointer-events:none; opacity:.17; mix-blend-mode:multiply;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E"); background-size:170px}
+  .contes .grainlayer{position:absolute; inset:0; z-index:4; pointer-events:none; opacity:.42; mix-blend-mode:multiply;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.09' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)' opacity='0.6'/%3E%3C/svg%3E");
+    background-size:140px, 360px}
 
   /* ============ MENU (checker + Anton) ============ */
   .checker{background:repeating-conic-gradient(var(--blush-chk) 0% 25%, var(--cream) 0% 50%) 50% / 58px 58px}
