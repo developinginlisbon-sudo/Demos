@@ -115,18 +115,19 @@
   /* ============ HORA DE COMER (letras espalhadas sobre foto — Time to Eat) ============ */
   .tte{position:relative; min-height:92svh; overflow:hidden; display:grid; place-items:center; padding:72px 16px;
     background:#241318 url("assets/hero-poster.jpg") center/cover no-repeat}
-  .tte .veil{position:absolute; inset:0; z-index:1; background:linear-gradient(rgba(28,12,16,.34), rgba(28,12,16,.55))}
+  .tte .veil{position:absolute; inset:0; z-index:1; background:linear-gradient(rgba(18,8,11,.5), rgba(18,8,11,.64))}
   .tte .grainlayer{position:absolute; inset:0; z-index:3; pointer-events:none; opacity:.15; mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E"); background-size:170px}
-  .tte-letters{position:relative; z-index:2; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px 10px; max-width:600px}
+  .tte-letters{position:relative; z-index:2; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:4px 20px; max-width:620px}
   .tte-letters .brk{flex-basis:100%; height:0; margin:0; padding:0}
-  .tte-letters span:not(.brk){font-family:var(--anton); text-transform:uppercase; font-size:clamp(48px,16vw,104px); line-height:.78; color:var(--ink);
-    background:var(--cream); padding:4px 16px 8px; border-radius:7px; box-shadow:0 12px 26px rgba(0,0,0,.4); display:inline-block}
-  .tte-letters span:nth-child(3n){transform:rotate(4deg) translateY(-7px)}
+  .tte-letters span:not(.brk){font-family:"Alfa Slab One",Impact,serif; text-transform:uppercase; font-size:clamp(72px,23vw,156px); line-height:.7; color:var(--cream);
+    display:inline-block; filter:url(#rough); text-shadow:0 6px 22px rgba(0,0,0,.5)}
+  .tte-letters span:nth-child(3n){transform:rotate(4deg) translateY(-6px)}
   .tte-letters span:nth-child(3n+1){transform:rotate(-5deg) translateY(5px)}
   .tte-letters span:nth-child(3n+2){transform:rotate(2deg)}
-  .tte-letters .emblem{background:var(--cream); border-radius:50%; width:clamp(58px,17vw,112px); height:clamp(58px,17vw,112px); padding:0; display:grid; place-items:center; transform:rotate(0)!important}
-  .tte-letters .emblem svg{width:62%; height:62%}
+  .tte-letters .emblem{width:clamp(56px,16vw,104px); height:clamp(56px,16vw,104px); display:grid; place-items:center; transform:rotate(0)!important; filter:none}
+  .tte-letters .emblem svg{width:100%; height:100%}
+  .tte-letters .emblem circle.bg{fill:var(--cream)}
   .tte-cap{position:absolute; z-index:3; bottom:34px; left:0; right:0; text-align:center; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--cream)}
 
   /* ============ ABOUT (scalloped card over photo — Grainhaus) ============ */
@@ -269,6 +270,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="7"/></filter>
     <pattern id="az" width="74" height="74" patternUnits="userSpaceOnUse">
       <g fill="none" stroke="#d96e8a" stroke-width="1.15">
         <path d="M37 5 L69 37 L37 69 L5 37 Z"/>
@@ -339,7 +341,7 @@
       <span>H</span><span>O</span><span>R</span><span>A</span><span class="brk"></span>
       <span>D</span><span>E</span><span class="brk"></span>
       <span>C</span><span>O</span>
-      <span class="emblem"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="#bd4e6c" stroke-width="2"><path d="M24 8 C32 16 32 32 24 40 C16 32 16 16 24 8Z"/><path d="M8 24 C16 16 32 16 40 24 C32 32 16 32 8 24Z"/><circle cx="24" cy="24" r="3" fill="#bd4e6c" stroke="none"/></g></svg></span>
+      <span class="emblem"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="bg" cx="24" cy="24" r="23.5"/><g fill="none" stroke="#bd4e6c" stroke-width="2"><path d="M24 10 C31 17 31 31 24 38 C17 31 17 17 24 10Z"/><path d="M10 24 C17 17 31 17 38 24 C31 31 17 31 10 24Z"/><circle cx="24" cy="24" r="2.6" fill="#bd4e6c" stroke="none"/></g></svg></span>
       <span>M</span><span>E</span><span>R</span>
     </div>
     <div class="grainlayer"></div>
