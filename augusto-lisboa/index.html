@@ -300,10 +300,24 @@
   .stagger.in>*:nth-child(3){transition-delay:.18s}.stagger.in>*:nth-child(4){transition-delay:.25s}
   .stagger.in>*:nth-child(5){transition-delay:.32s}.stagger.in>*:nth-child(6){transition-delay:.39s}
   .stagger.in>*:nth-child(7){transition-delay:.46s}.stagger.in>*:nth-child(8){transition-delay:.53s}
+  /* entrada da hero em cascata (no load) */
+  @keyframes hIn{from{opacity:0; transform:translateY(30px)}to{opacity:1; transform:none}}
+  @keyframes hFade{from{opacity:0}to{opacity:1}}
+  @keyframes hArch{from{opacity:0; clip-path:inset(0 0 100% 0)}to{opacity:1; clip-path:inset(0 0 0 0)}}
+  .hero-top{animation:hIn .9s both .15s}
+  .hero-word{animation:hFade 1s both .35s}
+  .hero-media{animation:hArch 1.1s both .55s, floaty 7s ease-in-out infinite 1.7s}
+  .hero-bottom{animation:hIn 1s both .8s}
+  .hero-scroll{animation:bob 2.2s ease-in-out infinite, hFade 1s both 1.1s}
+  /* títulos grandes constroem-se (wipe a subir) */
+  .wipe{clip-path:inset(100% 0 0 0); transition:clip-path 1.05s cubic-bezier(.16,.8,.24,1)}
+  .wipe.in{clip-path:inset(0 0 0 0)}
   @media (prefers-reduced-motion:reduce){
     .reveal,.stagger>*{opacity:1; transform:none; transition:none}
     .poster.reveal{clip-path:none} .poster.reveal img{transform:none}
-    .hero-media,.marquee .track,.hero-scroll,.grain{animation:none}
+    .wipe{clip-path:none}
+    .hero-top,.hero-word,.hero-media,.hero-bottom,.hero-scroll{animation:none; opacity:1}
+    .marquee .track,.grain{animation:none}
   }
 </style>
 </head>
@@ -375,7 +389,7 @@
   <!-- GALLERY -->
   <section class="gal-wrap grainy" id="galeria">
     <div class="gal-head reveal">
-      <h2>O que sai<br>da cozinha</h2>
+      <h2 class="wipe">O que sai<br>da cozinha</h2>
       <span class="script">servido com amor</span>
     </div>
     <div class="gal stagger">
@@ -397,15 +411,15 @@
   <!-- MENU -->
   <section class="menu checker" id="menu">
     <div class="frame reveal">
-      <div class="bigword"><span class="script">o nosso</span><h2>Menu</h2></div>
+      <div class="bigword"><span class="script">o nosso</span><h2 class="wipe">Menu</h2></div>
       <div class="menu-cols">
-        <div>
+        <div class="stagger">
           <div class="mi"><span class="n">Brunch completo</span><span class="dots"></span><span class="p">20,50€</span></div>
           <div class="mi"><span class="n">Avocado toast</span><span class="dots"></span><span class="p">9,50€</span></div>
           <div class="mi"><span class="n">Tosta de presunto</span><span class="dots"></span><span class="p">9,00€</span></div>
           <div class="mi"><span class="n">Taça de açaí</span><span class="dots"></span><span class="p">8,50€</span></div>
         </div>
-        <div>
+        <div class="stagger">
           <div class="mi"><span class="n">Pão de banana <span class="star">assinatura</span></span><span class="dots"></span><span class="p">4,50€</span></div>
           <div class="mi"><span class="n">Peanut butter latte</span><span class="dots"></span><span class="p">4,20€</span></div>
           <div class="mi"><span class="n">Matcha premium</span><span class="dots"></span><span class="p">4,50€</span></div>
@@ -423,8 +437,8 @@
   <section class="voices grainy">
     <div class="wrap">
       <div class="head reveal">
-        <h2>O que<br>dizem</h2>
-        <div class="score">4,8<small>★ · 3591 avaliações · Google</small></div>
+        <h2 class="wipe">O que<br>dizem</h2>
+        <div class="score"><span class="count" data-to="4.8" data-dec="1">0,0</span><small>★ · <span class="count" data-to="3591">0</span> avaliações · Google</small></div>
       </div>
       <div class="v-grid stagger">
         <div class="voice"><div class="q">"Os visitantes adoram o pão de banana da casa."</div><div class="s">Destaque do Google</div></div>
@@ -442,7 +456,7 @@
     <svg class="tiles-bg" aria-hidden="true"><rect width="100%" height="100%"></rect></svg>
     <div class="wrap">
       <div class="top reveal">
-        <h2>Duas casas<br>em Lisboa</h2>
+        <h2 class="wipe">Duas casas<br>em Lisboa</h2>
         <p class="paren" style="margin-top:12px; font-size:13px">(e todos os dias das 08:30 às 16:30)</p>
       </div>
       <div class="loc-grid stagger">
@@ -497,9 +511,18 @@
   function onScroll(){ nav.classList.toggle('scrolled',(window.scrollY||0)>40); }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-  // reveal
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -12% 0px'});
-  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
+  // reveal + contador
+  var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function countUp(el){
+    var to=parseFloat(el.getAttribute('data-to')), dec=+(el.getAttribute('data-dec')||0);
+    var fmt=function(v){ return dec ? v.toFixed(dec).replace('.',',') : String(Math.round(v)); };
+    if(rm){ el.textContent=fmt(to); return; }
+    var t0=null, dur=1300;
+    function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1); el.textContent=fmt(to*(1-Math.pow(1-p,3))); if(p<1)requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in'); if(e.target.hasAttribute('data-to'))countUp(e.target); io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('.reveal,.stagger,.wipe,.count').forEach(function(el){io.observe(el);});
 
   // hero parallax on the giant word
   var hw=document.getElementById('heroWord');
