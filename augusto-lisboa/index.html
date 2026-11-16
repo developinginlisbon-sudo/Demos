@@ -11,7 +11,7 @@
 <meta property="og:locale" content="pt_PT">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Jost:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Jost:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#f6ede0; --cream2:#efe2cf; --blush:#f7d9df; --blush-soft:#fbeef1; --blush-chk:#f1c0cc;
@@ -177,6 +177,22 @@
   .cm-caps span{flex:1}
   .cm-caps span:nth-child(2){text-align:center}
   .cm-caps span:last-child{text-align:right}
+
+  /* ============ CONTES (palavra chunky + prato + grão) ============ */
+  .contes{position:relative; overflow:hidden; background:var(--cream); min-height:96svh; display:grid; place-items:center; padding:84px 16px}
+  .cn-word{position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:"Alfa Slab One",Georgia,serif; text-transform:uppercase; color:var(--red); line-height:.8; letter-spacing:-.005em; white-space:nowrap}
+  .cn-word span{font-size:clamp(96px,36vw,250px)}
+  .cn-plate{position:relative; z-index:2; width:min(66vw,380px); aspect-ratio:1/1; border-radius:50%; overflow:hidden;
+    box-shadow:0 34px 74px rgba(60,20,20,.3); border:2px solid rgba(255,255,255,.5)}
+  .cn-plate img{width:100%; height:100%; object-fit:cover; transition:transform 7s ease}
+  .cn-plate:hover img{transform:scale(1.06)}
+  .cn-caps{position:absolute; z-index:3; left:0; right:0; bottom:36px; display:flex; justify-content:space-between; padding:0 26px;
+    font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink); font-weight:500}
+  .cn-caps span:nth-child(2){text-align:center; flex:1}
+  .cn-caps span:last-child{text-align:right}
+  .contes .grainlayer{position:absolute; inset:0; z-index:4; pointer-events:none; opacity:.17; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E"); background-size:170px}
 
   /* ============ MENU (checker + Anton) ============ */
   .checker{background:repeating-conic-gradient(var(--blush-chk) 0% 25%, var(--cream) 0% 50%) 50% / 58px 58px}
@@ -344,6 +360,14 @@
         <p>Mesas de mármore, chão de azulejo cor-de-rosa e balcões cheios de luz. Abrimos em Alfama em 2023 e hoje há também Belém. O <b>pão de banana da casa</b> e a <b>geleia de abóbora caseira</b> ganharam vida própria — e sim, há fila. Vale cada minuto.</p>
       </div>
     </div>
+  </section>
+
+  <!-- CONTES (palavra chunky + prato) -->
+  <section class="contes">
+    <div class="cn-word"><span>Bru</span><span>nch</span></div>
+    <div class="cn-plate reveal"><img src="assets/pancake-coco.jpg" alt="Prato de panquecas do Augusto Lisboa" loading="lazy"></div>
+    <div class="cn-caps"><span>feito na hora</span><span>à mesa</span><span>sem pressa</span></div>
+    <div class="grainlayer"></div>
   </section>
 
   <!-- GALLERY -->
