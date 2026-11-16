@@ -18,6 +18,8 @@
     --rose:#d96e8a; --rose-deep:#bd4e6c; --red:#c43a58; --green:#3c4a34; --kraft:#e7d3b3;
     --ink:#2a1c1a; --ink-soft:#6c564f; --muted:#9a8880; --gold:#b98a3f;
     --line:rgba(42,28,26,.16);
+    /* paleta real da marca (destaques do Instagram) */
+    --pink:#f6c8cc; --sage:#56705a; --sage-deep:#3d5443; --mustard:#d6b46a;
     --anton:"Anton",Impact,sans-serif; --disp:"Fraunces",Georgia,serif; --script:"Parisienne",cursive; --sans:"Jost",system-ui,sans-serif;
     --maxw:1120px;
   }
@@ -29,7 +31,7 @@
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
   h1,h2,h3{margin:0; line-height:1}
   a{color:inherit; text-decoration:none}
-  img,video{display:block; max-width:100%}
+  img,video{display:block; max-width:100%; height:auto}
   .script{font-family:var(--script); font-weight:400}
   .anton{font-family:var(--anton); font-weight:400; text-transform:uppercase; letter-spacing:-.005em; line-height:.84}
   .serif{font-family:var(--disp)}
@@ -60,8 +62,10 @@
     font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap; transition:all .3s}
   .pill-outline{border:1.5px solid var(--ink); color:var(--ink)}
   .pill-outline:hover{background:var(--ink); color:var(--cream)}
-  .pill-fill{background:var(--rose-deep); color:#fff; border:1.5px solid var(--ink); box-shadow:3px 3px 0 var(--ink)}
-  .pill-fill:hover{background:#9f3c57; transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink)}
+  .pill-fill{background:var(--sage-deep); color:#fff; border:1.5px solid var(--ink); box-shadow:3px 3px 0 var(--ink)}
+  .pill-fill:hover{background:#2f4234; transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink)}
+  .pill-ghost{border:1.5px solid rgba(255,248,238,.9); color:#fff8ee; background:rgba(255,248,238,.1); backdrop-filter:blur(6px)}
+  .pill-ghost:hover{background:#fff8ee; color:var(--ink)}
   .pill-fill:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink)}
   .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor; flex:none}
   .reg{font-size:.5em; vertical-align:super; font-family:var(--sans); font-weight:500; opacity:.8}
@@ -105,28 +109,108 @@
     background:rgba(42,28,26,.42); color:#fff; display:grid; place-items:center; cursor:pointer; backdrop-filter:blur(4px); padding:0}
   .vid-ctrl svg{width:15px; height:15px; fill:#fff}
 
-  /* ============ HERO (oversized type + layered media) ============ */
-  .hero{position:relative; min-height:100svh; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    background:
-      radial-gradient(135% 82% at 50% 44%, rgba(246,237,224,.9) 22%, rgba(246,237,224,.78) 66%, rgba(246,237,224,.64) 100%),
-      url("assets/azulejo-rosa.jpg") center/cover no-repeat, var(--cream)}
-  .hero-top{position:absolute; top:76px; left:0; right:0; z-index:4; display:flex; justify-content:space-between; padding:0 22px}
-  .hero-top .micro{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); line-height:1.7}
+  /* ============ HERO (a sala verdadeira + tipo gigante + arco com vídeo) ============ */
+  .hero{position:relative; min-height:100svh; overflow:hidden; isolation:isolate; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:122px 20px 34px; background:#3a2a24; color:#fff8ee}
+  .hero-bg{position:absolute; inset:0; z-index:-1; overflow:hidden}
+  .hero-bg img{width:100%; height:100%; object-fit:cover; object-position:50% 30%; animation:heroZoom 2.6s cubic-bezier(.2,.7,.2,1) both}
+  .hero-bg::after{content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(36,22,18,.55) 0%, rgba(36,22,18,.18) 30%, rgba(36,22,18,.22) 58%, rgba(36,22,18,.72) 100%)}
+  @keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+  .hero-top{position:absolute; top:76px; left:0; right:0; z-index:4; display:flex; justify-content:space-between; gap:12px; padding:0 22px}
+  .hero-top .micro{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,248,238,.88); line-height:1.7}
   .hero-top .micro.r{text-align:right}
-  .hero-word{position:relative; z-index:4; font-family:var(--anton); font-size:clamp(44px,23vw,138px); text-transform:uppercase;
-    color:var(--red); white-space:nowrap; letter-spacing:-.01em; line-height:.9; margin-bottom:22px; will-change:transform}
+  .hero-word{position:relative; z-index:2; font-family:var(--anton); font-size:clamp(44px,23vw,138px); text-transform:uppercase;
+    color:#fff8ee; white-space:nowrap; letter-spacing:-.01em; line-height:.9; margin-bottom:-.2em; will-change:transform;
+    text-shadow:0 6px 34px rgba(30,16,12,.35)}
   @media(min-width:760px){.hero-word{font-size:13vw}}
-  .hero-media{position:relative; z-index:3; width:min(58vw,300px); aspect-ratio:3/4.1; border-radius:999px 999px 16px 16px; overflow:hidden;
-    border:5px solid var(--cream); outline:1px solid var(--line); animation:floaty 7s ease-in-out infinite}
+  .hero-media{position:relative; z-index:3; width:min(52vw,290px); aspect-ratio:3/4.1; border-radius:999px 999px 16px 16px; overflow:hidden;
+    border:5px solid #fff8ee; box-shadow:0 24px 60px rgba(20,10,8,.4); animation:floaty 7s ease-in-out infinite}
   .hero-media video{width:100%; height:100%; object-fit:cover}
   .media-cap{position:absolute; z-index:3; left:0; right:0; bottom:18px; text-align:center; color:#fff; font-family:var(--script);
-    font-size:clamp(38px,12vw,58px); line-height:.8; text-shadow:0 4px 22px rgba(0,0,0,.55); pointer-events:none; padding-right:30px}
+    font-size:clamp(34px,10.5vw,54px); line-height:.8; text-shadow:0 4px 22px rgba(0,0,0,.55); pointer-events:none; padding-right:30px}
   .media-cap .reg{color:#fff}
-  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-  .hero-bottom{position:absolute; z-index:4; bottom:38px; left:0; right:0; display:flex; flex-direction:column; align-items:center; gap:14px; padding:0 22px}
-  .hero-bottom .script{font-size:clamp(38px,12vw,60px); color:var(--ink); line-height:.8}
-  .hero-scroll{position:absolute; z-index:4; bottom:14px; left:50%; transform:translateX(-50%); color:var(--ink); opacity:.5; font-size:18px; animation:bob 2.2s ease-in-out infinite}
-  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .hero-bottom{position:relative; z-index:4; margin-top:22px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center}
+  .hero-tag{font-size:clamp(34px,10vw,56px); line-height:.9; color:#fff8ee; text-shadow:0 4px 24px rgba(0,0,0,.4)}
+  .hero-ctas{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+  .hero-ctas .pill{font-size:11.5px; padding:12px 20px}
+  .hero .status{color:#fff8ee; border-color:rgba(255,248,238,.6); background:rgba(36,22,18,.35); backdrop-filter:blur(6px)}
+  .status.closed .dot-live{background:#c9a27a; animation:none}
+  /* desktop: tudo cabe no primeiro ecrã, mesmo em portáteis baixos */
+  @media(min-width:760px){
+    .hero{padding-top:96px}
+    .hero-word{font-size:min(13vw,19svh)}
+    .hero-media{width:min(52vw,280px,calc((100svh - 480px) * .73)); min-width:190px}
+    .hero-bottom{margin-top:18px; gap:12px}
+    .hero-tag{font-size:clamp(34px,5.4svh,48px)}
+  }
+
+  /* ============ DESTAQUES (os círculos do Instagram) ============ */
+  .highlights{background:var(--cream); padding:30px 0 34px; border-bottom:1px solid var(--line)}
+  .highlights .hl-head{text-align:center; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 18px; padding:0 20px}
+  .highlights .hl-head a{color:var(--sage-deep); font-weight:600}
+  .hl-row{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 20px 6px; scrollbar-width:none; justify-content:flex-start}
+  .hl-row::-webkit-scrollbar{display:none}
+  @media(min-width:760px){.hl-row{justify-content:center; gap:26px}}
+  .hl{flex:none; scroll-snap-align:start; display:flex; flex-direction:column; align-items:center; gap:8px; width:74px; text-align:center}
+  .hl .ring{width:70px; height:70px; border-radius:50%; padding:3px; background:conic-gradient(var(--pink),var(--mustard),var(--sage),var(--pink));
+    transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .hl .ring img{width:100%; height:100%; border-radius:50%; object-fit:cover; border:3px solid var(--cream)}
+  .hl span{font-size:11.5px; color:var(--ink); line-height:1.2}
+  .hl:hover .ring{transform:translateY(-3px)}
+
+  /* ============ O ESPAÇO (verde da marca, fotos reais em fita) ============ */
+  .espaco{background:radial-gradient(110% 80% at 50% 0%, #4a634f, var(--sage-deep) 60%, #33473a 100%); color:#fff8ee; padding:72px 0 64px; overflow:hidden}
+  .sec-head{max-width:var(--maxw); margin:0 auto; padding:0 24px 30px; display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap}
+  .sec-head h2{font-family:var(--anton); font-size:clamp(38px,10vw,72px); text-transform:uppercase; line-height:.9}
+  .sec-head .script{font-size:clamp(26px,7vw,40px); line-height:.9}
+  .sec-head p{flex-basis:100%; margin:0; font-family:var(--disp); font-style:italic; font-weight:300; font-size:17px; max-width:44ch}
+  .espaco .sec-head .script{color:var(--pink)}
+  .espaco .sec-head p{color:rgba(255,248,238,.82)}
+  .strip{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 24px 10px; scrollbar-width:thin; scrollbar-color:rgba(255,248,238,.35) transparent}
+  @media(min-width:1168px){.strip{padding-left:calc((100vw - var(--maxw))/2 + 24px)}}
+  .strip figure{flex:none; width:min(74vw,320px); margin:0; scroll-snap-align:start}
+  .strip img{width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:160px 160px 10px 10px}
+  .strip figcaption{margin-top:12px; font-family:var(--disp); font-style:italic; font-size:16px}
+  .strip figcaption small{display:block; font-family:var(--sans); font-style:normal; font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--pink); margin-top:4px}
+
+  /* ============ CAFÉ & MATCHA ============ */
+  .cafe{background:var(--cream); padding:72px 0 70px}
+  .cafe .sec-head .script{color:var(--sage)}
+  .cafe .sec-head p{color:var(--ink-soft)}
+  .cafe-grid{max-width:var(--maxw); margin:0 auto; padding:0 24px; display:grid; grid-template-columns:repeat(2,1fr); gap:18px 14px}
+  @media(min-width:760px){.cafe-grid{grid-template-columns:repeat(4,1fr); gap:24px}}
+  .cafe-grid figure{margin:0}
+  .cafe-grid img{width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:999px 999px 12px 12px; border:1.5px solid var(--ink)}
+  .cafe-grid figure:nth-child(even){margin-top:34px}
+  .cafe-grid figcaption{margin-top:10px; font-family:var(--disp); font-size:16px; line-height:1.25}
+  .cafe-grid figcaption small{display:block; font-family:var(--sans); font-size:12.5px; color:var(--ink-soft); margin-top:3px}
+  .partners{max-width:var(--maxw); margin:40px auto 0; padding:0 24px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center}
+  .partners .lab{flex-basis:100%; text-align:center; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px}
+  .partners .pill{border:1.5px solid var(--ink); background:#fff8ee; letter-spacing:.08em; text-transform:none; font-size:13px}
+  .partners .pill b{font-weight:600; color:var(--sage-deep)}
+
+  /* ============ BANANA BREAD (mostarda da marca) ============ */
+  .banana{background:var(--mustard); color:var(--ink); padding:70px 24px; overflow:hidden}
+  .banana .inner{max-width:var(--maxw); margin:0 auto; display:grid; gap:34px; align-items:center}
+  @media(min-width:800px){.banana .inner{grid-template-columns:1fr 1fr; gap:56px}}
+  .banana .pics{position:relative; height:min(118vw,520px)}
+  .banana .pics img{position:absolute; width:64%; aspect-ratio:4/5; object-fit:cover; border:8px solid #fff8ee; box-shadow:0 22px 46px rgba(60,40,10,.28)}
+  .banana .pics img:first-child{left:0; top:0; transform:rotate(-4deg)}
+  .banana .pics img:last-child{right:0; bottom:0; transform:rotate(3.5deg)}
+  .banana .script{font-size:clamp(28px,8vw,40px); color:var(--sage-deep); line-height:.9}
+  .banana h2{font-family:var(--anton); font-size:clamp(52px,15vw,108px); text-transform:uppercase; line-height:.84; margin:6px 0 16px}
+  .banana p{font-family:var(--disp); font-size:18px; line-height:1.5; max-width:38ch; margin:0 0 24px}
+
+  /* ============ CLIENTES (fita de fotos a passar) ============ */
+  .clientes{background:var(--cream); padding:66px 0 60px; overflow:hidden}
+  .clientes .sec-head{padding-bottom:26px}
+  .clientes .sec-head .script{color:var(--rose-deep)}
+  .clientes .sec-head p{color:var(--ink-soft)}
+  .cl-track{display:flex; gap:14px; padding-right:14px; width:max-content; animation:scroll 46s linear infinite}
+  .clientes:hover .cl-track{animation-play-state:paused}
+  .cl-track img{width:auto; max-width:none; height:clamp(220px,62vw,320px); aspect-ratio:4/5; object-fit:cover; border-radius:12px; flex:none}
 
   /* MARQUEE */
   .marquee{background:var(--ink); color:var(--cream); overflow:hidden; padding:16px 0; white-space:nowrap; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink)}
@@ -191,7 +275,7 @@
   .gal-head h2{font-family:var(--anton); font-size:clamp(34px,9vw,70px); text-transform:uppercase; line-height:.9}
   .gal-head .script{font-size:clamp(26px,7vw,40px); color:var(--rose)}
   .gal{max-width:var(--maxw); margin:0 auto; padding:0 24px; display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
-  @media(min-width:760px){.gal{grid-template-columns:repeat(3,1fr); gap:20px}}
+  @media(min-width:760px){.gal{grid-template-columns:repeat(4,1fr); gap:20px}}
   .gi figure{margin:0; overflow:hidden; border-radius:4px}
   .gi img{width:100%; aspect-ratio:3/4; object-fit:cover; transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
   .gi:hover img{transform:scale(1.06)}
@@ -324,12 +408,12 @@
   nav .brand.has-badge{line-height:0}
 
   /* ============ COLAGEM / MOODBOARD (posters colados à mão) ============ */
-  .collage{position:relative; overflow:hidden; padding:74px 18px 80px; color:var(--cream);
-    background:radial-gradient(120% 100% at 50% 0%, #cb5c7a 0%, var(--rose-deep) 58%, #a23c59 100%)}
+  .collage{position:relative; overflow:hidden; padding:74px 18px 80px; color:var(--ink);
+    background:radial-gradient(120% 100% at 50% 0%, #fadbde 0%, var(--pink) 58%, #eeb6bd 100%)}
   .collage .collage-head{position:relative; z-index:2; max-width:760px; margin:0 auto 40px; text-align:center}
-  .collage .collage-head .script{font-size:clamp(26px,8vw,40px); color:var(--blush); line-height:.9; display:block}
+  .collage .collage-head .script{font-size:clamp(26px,8vw,40px); color:var(--sage-deep); line-height:.9; display:block}
   .collage .collage-head h2{font-family:var(--anton); font-size:clamp(34px,10vw,70px); text-transform:uppercase; line-height:.9; margin-top:6px}
-  .collage .collage-head p{font-family:var(--disp); font-style:italic; font-weight:300; font-size:16.5px; color:rgba(255,255,255,.88); max-width:38ch; margin:14px auto 0}
+  .collage .collage-head p{font-family:var(--disp); font-style:italic; font-weight:300; font-size:16.5px; color:var(--ink-soft); max-width:38ch; margin:14px auto 0}
   .collage-grid{position:relative; z-index:2; max-width:960px; margin:0 auto; column-count:2; column-gap:16px}
   @media(min-width:760px){.collage-grid{column-count:3; column-gap:28px}}
   .col-card{position:relative; display:inline-block; width:100%; break-inside:avoid; -webkit-column-break-inside:avoid;
@@ -344,7 +428,7 @@
   .col-card img{width:100%; height:auto; display:block; border-radius:1px}
   .col-card figcaption{margin-top:10px; text-align:center; font-family:var(--script); font-size:19px; color:var(--ink); line-height:1}
   .col-card .tk{position:absolute; top:-9px; left:50%; width:62px; height:20px; transform:translateX(-50%) rotate(-3deg);
-    background:rgba(247,217,223,.72); border:1px dashed rgba(42,28,26,.25); border-radius:2px}
+    background:rgba(214,180,106,.72); border:1px dashed rgba(42,28,26,.25); border-radius:2px}
   .col-card:hover{transform:rotate(0deg) scale(1.04); z-index:4; box-shadow:0 26px 48px rgba(42,28,26,.34)}
   @media(hover:none){.col-card:hover{transform:rotate(var(--r,0deg))}}
 
@@ -380,8 +464,9 @@
     .col-card{opacity:1; transition:none}
     .poster.reveal{clip-path:none} .poster.reveal img{transform:none}
     .wipe{clip-path:none}
-    .hero-top,.hero-word,.hero-media,.hero-bottom,.hero-scroll{animation:none; opacity:1}
+    .hero-top,.hero-word,.hero-media,.hero-bottom,.hero-bg img{animation:none; opacity:1}
     .marquee .track,.grain{animation:none}
+    .cl-track{animation:none; width:auto; overflow-x:auto; padding:0 24px}
   }
 </style>
 <link rel="stylesheet" href="assets/story.css">
@@ -416,9 +501,10 @@
 
   <!-- HERO -->
   <header class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"><img src="assets/hero-sala.jpg" alt="" fetchpriority="high" width="1440" height="1800"></div>
     <div class="hero-top">
-      <div class="micro">Rua de Santa Marinha 26 · Alfama<br>Calçada da Ajuda 34 · Belém</div>
-      <div class="micro r">Todos os dias<br>08:30 – 16:30</div>
+      <div class="micro">Alfama<br>&amp; Belém</div>
+      <div class="micro r">Brunch<br>o dia todo</div>
     </div>
     <h1 class="hero-word" id="heroWord">Augusto</h1>
     <div class="hero-media">
@@ -429,10 +515,13 @@
       <button class="vid-ctrl" id="vidCtrl" type="button" aria-label="Pausar vídeo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="4" height="14" rx="1"/><rect x="13" y="5" width="4" height="14" rx="1"/></svg></button>
     </div>
     <div class="hero-bottom">
-      <span class="pill status"><span class="dot-live"></span>Aberto agora · 08:30–16:30</span>
-      <span class="pill pill-outline">Brunch de bairro · desde 2023</span>
+      <p class="hero-tag script">Better food, better mood.</p>
+      <div class="hero-ctas">
+        <a class="pill pill-fill" href="menu.html">Ver o menu</a>
+        <a class="pill pill-ghost" href="#visitar">Como chegar</a>
+      </div>
+      <span class="pill status" id="openStatus"><span class="dot-live"></span><span class="txt">Todos os dias · 08:30–16:30</span></span>
     </div>
-    <a class="hero-scroll" href="#manifesto" aria-label="Descer">↓</a>
   </header>
 
   <!-- MARQUEE -->
@@ -443,12 +532,20 @@
     </div>
   </div>
 
-  <!-- BANDA DE CÁPSULAS -->
-  <section class="badge-band reveal">
-    <span class="badge-oval">Alfama<br>&amp; Belém</span>
-    <span class="mid">brunch &amp; café</span>
-    <span class="badge-oval">Desde<br>2023</span>
-  </section>
+  <!-- DESTAQUES (como no Instagram) -->
+  <div class="highlights" role="navigation" aria-label="Destaques">
+    <p class="hl-head">Os destaques do <a href="https://www.instagram.com/augustolisboapt/" target="_blank" rel="noopener">@augustolisboapt</a></p>
+    <div class="hl-row">
+      <a class="hl" href="#galeria"><span class="ring"><img src="assets/ic-brunch.jpg" alt="" width="150" height="150"></span><span>Brunch</span></a>
+      <a class="hl" href="#galeria"><span class="ring"><img src="assets/ic-toasts.jpg" alt="" width="150" height="150"></span><span>Tostas</span></a>
+      <a class="hl" href="#banana"><span class="ring"><img src="assets/ic-treats.jpg" alt="" width="150" height="150"></span><span>Doces</span></a>
+      <a class="hl" href="#cafe"><span class="ring"><img src="assets/ic-coffee.jpg" alt="" width="150" height="150"></span><span>Café</span></a>
+      <a class="hl" href="#cafe"><span class="ring"><img src="assets/ic-drinks.jpg" alt="" width="150" height="150"></span><span>Bebidas</span></a>
+      <a class="hl" href="#espaco"><span class="ring"><img src="assets/ic-discover.jpg" alt="" width="150" height="150"></span><span>O espaço</span></a>
+      <a class="hl" href="#clientes"><span class="ring"><img src="assets/ic-testimonials.jpg" alt="" width="150" height="150"></span><span>Clientes</span></a>
+      <a class="hl" href="#visitar"><span class="ring"><img src="assets/ic-belem.jpg" alt="" width="150" height="150"></span><span>Belém</span></a>
+    </div>
+  </div>
 
   <!-- POSTER: Bom dia Lisboa -->
   <section class="story story-bom" id="manifesto" aria-label="BOM DIA LISBOA">
@@ -465,6 +562,23 @@
  <div class="story-margin" aria-hidden="true">AUGUSTO LISBOA <span>BRUNCH DE BAIRRO</span></div>
  </section>
 
+  <!-- O ESPAÇO -->
+  <section class="espaco grainy" id="espaco" aria-label="O espaço">
+    <div class="sec-head reveal">
+      <h2 class="wipe">O espaço</h2>
+      <span class="script">duas casas, o mesmo abraço</span>
+      <p>Arcos cor-de-rosa, plantas por todo o lado, uma varanda ao sol e uma esplanada sempre pronta para te receber.</p>
+    </div>
+    <div class="strip">
+      <figure><img src="assets/fachada.jpg" alt="Fachada do Augusto com a placa na Calçada da Ajuda" loading="lazy" width="1080" height="1350"><figcaption>A nossa porta em Belém.<small>Calçada da Ajuda</small></figcaption></figure>
+      <figure><img src="assets/sala-mesa.jpg" alt="Sala cheia com candeeiros dourados e plantas" loading="lazy" width="1080" height="1350"><figcaption>Onde as memórias se juntam.<small>A sala</small></figcaption></figure>
+      <figure><img src="assets/janela-belem.jpg" alt="Cliente a tomar o pequeno-almoço na varanda" loading="lazy" width="1080" height="1350"><figcaption>Dias de sol na varanda.<small>Augusto Belém</small></figcaption></figure>
+      <figure><img src="assets/esplanada.jpg" alt="Esplanada cheia à sombra das árvores" loading="lazy" width="1080" height="1350"><figcaption>Um dia perfeito para brunch.<small>A esplanada</small></figcaption></figure>
+      <figure><img src="assets/mesa-primavera.jpg" alt="Mesa ao sol cheia de pratos de brunch" loading="lazy" width="1080" height="1350"><figcaption>Doce ou salgado, a mesa é tua.<small>Mesa de primavera</small></figcaption></figure>
+      <figure><img src="assets/varanda-manha.jpg" alt="Cliente na varanda com uma taça tropical" loading="lazy" width="1080" height="1350"><figcaption>Felicidade matinal.<small>A varanda</small></figcaption></figure>
+    </div>
+  </section>
+
   <!-- POSTER: Time to Eat -->
   <section class="story story-time" aria-label="Time to eat">
  <div class="story-stage">
@@ -473,6 +587,46 @@
  <svg class="time-hands build-piece" viewBox="0 0 1000 1245" aria-hidden="true"><defs><clipPath id="time-hands-mask"><path d="M0 0 L252 0 Q320 44 346 105 L355 251 Q353 319 332 350 L306 342 L291 284 Q265 316 235 303 L202 283 L174 252 L149 208 L140 154 L0 168 Z M1000 322 Q923 306 871 290 Q836 278 814 311 L759 388 Q727 440 734 474 L752 479 L778 437 Q764 512 788 532 Q811 537 826 496 L847 470 Q878 491 895 463 L918 443 L1000 424 Z"/></clipPath></defs><image href="assets/pancake-maos.jpg" width="1000" height="1245" preserveAspectRatio="none" clip-path="url(#time-hands-mask)"/></svg><div class="time-signature build-piece"><span class="script">Augusto</span><small>LISBOA</small></div>
  </div><div class="story-margin" aria-hidden="true">SÓ MAIS UMA DENTADA <span>FEITO COM AMOR</span></div>
 </section>
+
+  <!-- GALLERY -->
+  <section class="gal-wrap grainy" id="galeria">
+    <div class="gal-head reveal">
+      <h2 class="wipe">O que sai<br>da cozinha</h2>
+      <span class="script">brunch o dia todo</span>
+    </div>
+    <div class="gal stagger">
+      <div class="gi"><figure><img src="assets/tosta-abobora.jpg" alt="Tostas de sourdough com doce de abóbora e queijo creme" loading="lazy" width="1080" height="1350"></figure><figcaption>Tosta de abóbora.<span class="n">Doce de abóbora caseiro · queijo creme</span></figcaption></div>
+      <div class="gi"><figure><img src="assets/tosta-presunto.jpg" alt="Tosta de presunto com ovos mexidos" loading="lazy" width="1080" height="1350"></figure><figcaption>Tosta de presunto.<span class="n">Pão Gleba · queijo caseiro · ovos</span></figcaption></div>
+      <div class="gi"><figure><img src="assets/guilty-pleasure.jpg" alt="Torre de panquecas com gelado e fruta" loading="lazy" width="1080" height="1350"></figure><figcaption>Guilty Pleasure.<span class="n">Gelado de pastel de nata</span></figcaption></div>
+      <div class="gi"><figure><img src="assets/tiramisu-panqueca.jpg" alt="Panquecas com caramelo e frutos vermelhos" loading="lazy" width="1080" height="1350"></figure><figcaption>Tiramisù em panqueca.<span class="n">Cheesecake · caramelo de café</span></figcaption></div>
+      <div class="gi"><figure><img src="assets/french-toast.jpg" alt="French toast com caramelo e chantilly" loading="lazy" width="1080" height="1350"></figure><figcaption>A french toast inesperada.<span class="n">Caramelo · chantilly caseiro</span></figcaption></div>
+      <div class="gi"><figure><img src="assets/taca-tropical.jpg" alt="Taça tropical com manga, melão e fruta" loading="lazy" width="1080" height="1350"></figure><figcaption>Tropical treat.<span class="n">Manga · chia de coco · água de rosas</span></figcaption></div>
+      <div class="gi"><figure><img src="assets/aveia.jpg" alt="Taça de aveia com banana e avelã" loading="lazy" width="1080" height="1350"></figure><figcaption>Aveia orgânica.<span class="n">Maçã e pera · avelã · cardamomo</span></figcaption></div>
+      <div class="gi"><figure><img src="assets/degustacao.jpg" alt="Tábua de queijos e enchidos portugueses" loading="lazy" width="1080" height="1350"></figure><figcaption>Degustação portuguesa.<span class="n">Queijos · enchidos · azeite Picual</span></figcaption></div>
+    </div>
+  </section>
+
+  <!-- CAFÉ & MATCHA -->
+  <section class="cafe" id="cafe" aria-label="Café e matcha">
+    <div class="sec-head reveal">
+      <h2 class="wipe">Café &amp;<br>matcha</h2>
+      <span class="script">energia e amor num copo</span>
+      <p>Café de especialidade da Buraca Roasters, matcha orgânico premium e limonadas feitas em casa.</p>
+    </div>
+    <div class="cafe-grid stagger">
+      <figure><img src="assets/cafe-maos.jpg" alt="Cappuccino com latte art numa chávena rosa" loading="lazy" width="1080" height="1350"><figcaption>Café de especialidade<small>Buraca Roasters</small></figcaption></figure>
+      <figure><img src="assets/matcha-latte.jpg" alt="Matcha latte com leite de aveia" loading="lazy" width="1080" height="1350"><figcaption>Matcha latte<small>Aveia, mel e spirulina</small></figcaption></figure>
+      <figure><img src="assets/limonada-matcha.jpg" alt="Limonada caseira com matcha" loading="lazy" width="1080" height="1350"><figcaption>Limonada de matcha<small>Citrinos, menta e mel</small></figcaption></figure>
+      <figure><img src="assets/sumo-hibisco.jpg" alt="Sumo de laranja e chá de hibisco a brindar" loading="lazy" width="1080" height="1350"><figcaption>Laranja &amp; hibisco<small>Espremido na hora</small></figcaption></figure>
+    </div>
+    <div class="partners reveal">
+      <span class="lab">Os nossos parceiros</span>
+      <span class="pill">Café <b>Buraca Roasters</b></span>
+      <span class="pill">Pão <b>Gleba</b></span>
+      <span class="pill">Vinho natural <b>Cas.Amaro</b></span>
+      <span class="pill">Bebida de ervilha <b>Drykdk</b></span>
+    </div>
+  </section>
 
   <!-- COLAGEM / MOODBOARD -->
   <section class="collage grainy" aria-label="O que se serve à mesa">
@@ -485,25 +639,9 @@
       <figure class="col-card" style="--r:-4deg"><span class="tk" aria-hidden="true"></span><img src="assets/poster-brunch-poster.jpg" alt="Brunch à Augusto" loading="lazy"><figcaption>Brunch à Augusto</figcaption></figure>
       <figure class="col-card" style="--r:3deg"><span class="tk" aria-hidden="true"></span><img src="assets/latte-lifestyle.jpg" alt="Peanut butter latte" loading="lazy"><figcaption>Peanut butter latte</figcaption></figure>
       <figure class="col-card" style="--r:-2deg"><span class="tk" aria-hidden="true"></span><img src="assets/poster-pancake-club.jpg" alt="Pancake Club" loading="lazy"><figcaption>Pancake club</figcaption></figure>
-      <figure class="col-card" style="--r:2.5deg"><span class="tk" aria-hidden="true"></span><img src="assets/tosta-cream.jpg" alt="Tostas da casa" loading="lazy"><figcaption>Tostas da casa</figcaption></figure>
+      <figure class="col-card" style="--r:2.5deg"><span class="tk" aria-hidden="true"></span><img src="assets/dois-pratos.jpg" alt="Tosta de abacate e tosta de presunto" loading="lazy"><figcaption>Difícil de escolher</figcaption></figure>
       <figure class="col-card" style="--r:-3deg"><span class="tk" aria-hidden="true"></span><img src="assets/poster-boa-conversa.jpg" alt="Boa conversa, sem pressa" loading="lazy"><figcaption>Boa conversa</figcaption></figure>
-      <figure class="col-card" style="--r:3.5deg"><span class="tk" aria-hidden="true"></span><img src="assets/poster-doce-doce.jpg" alt="Doce doce — só mais uma dentada" loading="lazy"><figcaption>Doce doce</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gal-wrap grainy" id="galeria">
-    <div class="gal-head reveal">
-      <h2 class="wipe">O que sai<br>da cozinha</h2>
-      <span class="script">servido com amor</span>
-    </div>
-    <div class="gal stagger">
-      <div class="gi"><figure><img src="assets/dois-pratos.jpg" alt="Avocado toast e tosta de presunto" loading="lazy"></figure><figcaption>Difícil de escolher.<span class="n">Avo · Presunto</span></figcaption></div>
-      <div class="gi"><figure><img src="assets/avo-vedette.jpg" alt="Avocado toast com fitas de cenoura" loading="lazy"></figure><figcaption>The vedette.<span class="n">Avocado toast</span></figcaption></div>
-      <div class="gi"><figure><img src="assets/matcha.jpg" alt="Matcha latte com arte" loading="lazy"></figure><figcaption>Organic premium.<span class="n">Matcha</span></figcaption></div>
-      <div class="gi"><figure><img src="assets/pancake-coco.jpg" alt="Panquecas caseiras com coco" loading="lazy"></figure><figcaption>Pancake paradise.<span class="n">Panquecas</span></figcaption></div>
-      <div class="gi"><figure><img src="assets/avo-ovo.jpg" alt="Avocado toast com ovo" loading="lazy"></figure><figcaption>A classic, not so classic.<span class="n">Ovo + abacate</span></figcaption></div>
-      <div class="gi"><figure><img src="assets/vinho.jpg" alt="Vinho rosé natural" loading="lazy"></figure><figcaption>Wine lovers, unite.<span class="n">Vinho natural</span></figcaption></div>
+      <figure class="col-card" style="--r:3.5deg"><span class="tk" aria-hidden="true"></span><img src="assets/vinho.jpg" alt="Vinho natural rosé" loading="lazy"><figcaption>Wine lovers, unite</figcaption></figure>
     </div>
   </section>
 
@@ -522,6 +660,22 @@
  <div class="story-margin" aria-hidden="true">AUGUSTO LISBOA <span>BRUNCH DE BAIRRO</span></div>
  </section>
 
+  <!-- BANANA BREAD (o best-seller) -->
+  <section class="banana grainy" id="banana" aria-label="Banana bread">
+    <div class="inner">
+      <div class="pics reveal">
+        <img src="assets/banana-bread-forno.jpg" alt="Banana bread a ser cortado na cozinha" loading="lazy" width="1080" height="1350">
+        <img src="assets/banana-bread.jpg" alt="Fatia de banana bread com o postal da receita" loading="lazy" width="1080" height="1350">
+      </div>
+      <div class="reveal">
+        <span class="script">o nosso best-seller</span>
+        <h2 class="wipe">Banana<br>bread</h2>
+        <p>O icónico banana bread do Augusto, feito todos os dias em Alfama e Belém. Leva o nosso postal com a receita secreta e recria-o em casa.</p>
+        <a class="pill pill-fill" href="menu.html">Ver os doces no menu</a>
+      </div>
+    </div>
+  </section>
+
   <!-- POSTER: Boa Companhia -->
   <section class="story story-boa"  aria-label="BOA COMPANHIA">
  <div class="story-stage">
@@ -537,6 +691,29 @@
  <div class="story-margin" aria-hidden="true">AUGUSTO LISBOA <span>BRUNCH DE BAIRRO</span></div>
  </section>
 
+  <!-- CLIENTES -->
+  <section class="clientes" id="clientes" aria-label="Clientes">
+    <div class="sec-head reveal">
+      <h2 class="wipe">Clientes</h2>
+      <span class="script">é tudo sorrisos por aqui</span>
+      <p>Mais de 15 mil pessoas seguem o Augusto no Instagram. Estas são algumas das que se sentam à nossa mesa.</p>
+    </div>
+    <div class="cl-track">
+      <img src="assets/cliente-1.jpg" alt="Cliente a sorrir com um matcha e uma tosta" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-3.jpg" alt="Cliente com um matcha latte no sofá" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-4.jpg" alt="Mãe com o bebé ao colo no Augusto" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-5.jpg" alt="Cliente com um café gelado" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-6.jpg" alt="Cliente a beber limonada" loading="lazy" width="1080" height="1350">
+      <img src="assets/varanda-sorriso.jpg" alt="Cliente na varanda com panquecas" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-1.jpg" alt="" aria-hidden="true" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-3.jpg" alt="" aria-hidden="true" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-4.jpg" alt="" aria-hidden="true" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-5.jpg" alt="" aria-hidden="true" loading="lazy" width="1080" height="1350">
+      <img src="assets/cliente-6.jpg" alt="" aria-hidden="true" loading="lazy" width="1080" height="1350">
+      <img src="assets/varanda-sorriso.jpg" alt="" aria-hidden="true" loading="lazy" width="1080" height="1350">
+    </div>
+  </section>
+
   <!-- CHAMADA PARA O MENU (página à parte) -->
   <section class="menu checker" aria-label="O nosso menu">
     <div class="frame reveal" style="text-align:center">
@@ -547,7 +724,7 @@
   </section>
 
   <!-- VOICES -->
-  <section class="voices grainy">
+  <section class="voices grainy" id="vozes">
     <div class="wrap">
       <div class="head reveal">
         <h2 class="wipe">O que<br>dizem</h2>
@@ -613,6 +790,7 @@
         <h4>Mais</h4>
         <a href="#galeria">Galeria</a>
         <a href="menu.html">Menu</a>
+        <a href="https://www.instagram.com/augustolisboapt/" target="_blank" rel="noopener">Instagram · @augustolisboapt</a>
         <a href="../"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;margin-right:7px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M10 8l-4 4 4 4M6 12h10a2 2 0 0 0 2-2V7"/></svg>Outras demos</a>
       </div>
     </div>
@@ -661,6 +839,19 @@
       if(vid.paused){ vid.play(); vc.innerHTML=icoPause; vc.setAttribute('aria-label','Pausar vídeo'); }
       else { vid.pause(); vc.innerHTML=icoPlay; vc.setAttribute('aria-label','Reproduzir vídeo'); }
     });
+  }
+
+  // estado real (hora de Lisboa): aberto todos os dias 08:30–16:30
+  var os=document.getElementById('openStatus');
+  if(os){
+    var setStatus=function(){
+      var p=new Intl.DateTimeFormat('pt-PT',{timeZone:'Europe/Lisbon',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
+      var h=0,m=0; p.forEach(function(x){ if(x.type==='hour')h=+x.value; if(x.type==='minute')m=+x.value; });
+      var t=h*60+m, open=t>=510 && t<990;
+      os.classList.toggle('closed',!open);
+      os.querySelector('.txt').textContent = open ? 'Aberto agora · fecha às 16:30' : (t<510 ? 'Fechado · abre hoje às 08:30' : 'Fechado · abre amanhã às 08:30');
+    };
+    setStatus(); setInterval(setStatus,60000);
   }
 
   // hero parallax on the giant word
