@@ -34,8 +34,12 @@
   .serif{font-family:var(--disp)}
 
   /* grain / textures */
-  .grain{position:fixed; inset:0; z-index:999; pointer-events:none; opacity:.04; mix-blend-mode:multiply;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .grain{position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:.1; mix-blend-mode:overlay; background-size:170px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain .5s steps(5) infinite}
+  @keyframes grain{
+    0%{background-position:0 0}20%{background-position:-22px 14px}40%{background-position:16px -24px}
+    60%{background-position:-14px -14px}80%{background-position:24px 18px}100%{background-position:0 0}}
   /* strong paper grain on colour blocks (Grainhaus) */
   .grainy{position:relative}
   .grainy::before{content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.22; mix-blend-mode:overlay;
@@ -299,7 +303,7 @@
   @media (prefers-reduced-motion:reduce){
     .reveal,.stagger>*{opacity:1; transform:none; transition:none}
     .poster.reveal{clip-path:none} .poster.reveal img{transform:none}
-    .hero-media,.marquee .track,.hero-scroll{animation:none}
+    .hero-media,.marquee .track,.hero-scroll,.grain{animation:none}
   }
 </style>
 </head>
