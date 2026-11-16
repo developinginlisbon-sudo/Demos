@@ -1,0 +1,72 @@
+/* Layered editorial scenes. All masks retain the original photographic pixels. */
+.story{position:relative;isolation:isolate;overflow:hidden;background:var(--scene-bg);color:var(--scene-ink);display:grid;place-items:center}
+.story-bom{--scene-bg:#f4bdc3;--scene-ink:#073b19}
+.story-doce{--scene-bg:#f3dfbf;--scene-ink:#970d08}
+.story-boa{--scene-bg:#730b13;--scene-ink:#ff451b}
+.story-matcha{--scene-bg:#f1bec5;--scene-ink:#425b2c;background:linear-gradient(#425b2c 0 36.6%,#f1bec5 36.6%)}
+.story-time{--scene-bg:#241b17;--scene-ink:#f7e9c5}
+.story::after{content:"";position:absolute;inset:0;z-index:8;pointer-events:none;opacity:.15;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url(%23paper)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+.story-stage{position:relative;width:100%;max-width:760px;aspect-ratio:1122/1402;container-type:inline-size;isolation:isolate}
+.story-brand{position:absolute;top:1%;left:0;right:0;text-align:center;z-index:4;line-height:1}
+.story-brand>span{font-family:var(--script);font-size:10cqw;display:block}
+.story-brand small{display:block;font-family:var(--sans);font-size:1.9cqw;letter-spacing:.5em;font-weight:600;margin-top:.6cqw;padding-left:.5em}
+.story-type{position:absolute;inset:10% 1.6% 4%;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--anton);font-weight:400;line-height:.93;letter-spacing:-.035em;text-align:center;z-index:1}
+.build-word{display:block;transform-origin:50% 100%;font-size:44cqw}
+.story-bom .story-type{font-family:'Archivo Black',Impact,sans-serif;inset:11% 1% 5%;line-height:.92;letter-spacing:-.07em}
+.story-bom .build-word{font-size:44cqw}
+.story-bom .word-2{font-size:25.5cqw;letter-spacing:-.065em}
+.story-doce .build-word{font-size:47cqw;transform:scaleY(1.17)}
+.story-doce .story-type{inset:13% 1% 9%}
+.story-boa .story-type{inset:10% 2% 6%}
+.story-boa .word-0{font-size:39cqw}
+.story-boa .word-1{font-size:19.2cqw;letter-spacing:-.035em;transform:scaleY(1.6);transform-origin:50% 100%}
+.story-cutout{position:absolute;inset:0;width:100%;height:100%;z-index:2;overflow:visible;pointer-events:none}
+.story-caption{position:absolute;bottom:1.6%;left:0;right:0;margin:0;text-align:center;font-size:2.5cqw;letter-spacing:.24em;font-weight:600;z-index:3}
+.story-bom .story-caption{bottom:2%;left:28%;right:28%;border-radius:99px;background:#f7ead1;padding:.8cqw 0;font-family:'Archivo Black',sans-serif;letter-spacing:0;font-size:2.8cqw}
+.story-boa .story-brand,.story-boa .story-caption{color:#f4deb4}
+.story-matcha .story-brand{color:#f4e3bf;top:2%}
+.story-matcha .story-brand>span{font-size:18cqw}
+.story-matcha .story-type{inset:22% 4% 11%;font-family:var(--sans);letter-spacing:.12em;z-index:3;pointer-events:none}
+.story-matcha .word-0{font-size:3.5cqw;color:#f4e3bf;font-weight:500}
+.story-matcha .word-1{font-size:6cqw;letter-spacing:.08em;text-align:left;padding-left:7%}
+.story-matcha .story-caption{bottom:7%;letter-spacing:0;font-size:3cqw;left:11%;right:auto;font-weight:400}
+.matcha-paper{position:absolute;inset:29% 5.7% 2.4%;background:#f4e3bf;z-index:0;mask:radial-gradient(2.6cqw at 50% 0,transparent 98%,#000 100%) 50% 0/8.6cqw 100%}
+.matcha-note{position:absolute;top:33%;left:10.5%;z-index:3;line-height:1.05;font-size:3.5cqw;margin:0}
+.story-margin{display:none}
+.time-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.17) saturate(.86)}
+.time-type{position:absolute;inset:7% 5% 9%;display:flex;flex-direction:column;justify-content:space-between;color:#f8e9c3;line-height:.8;font-family:'Archivo Black',Impact,sans-serif}
+.time-type span{font-size:30cqw;letter-spacing:.09em;transform:rotate(-9deg)}
+.time-type span:nth-child(2){font-size:23cqw;align-self:center;margin-top:-38%;transform:rotate(-12deg)}
+.time-type span:last-child{font-size:31cqw;transform:rotate(-7deg)}
+.time-signature{position:absolute;bottom:2%;left:0;right:0;text-align:center;color:#f8e9c3;line-height:1}
+.time-signature .script{font-size:7cqw;display:block}
+.time-signature small{font-size:1.6cqw;letter-spacing:.5em}
+/* Progressive enhancement: content is visible until the observer is ready. */
+.story.motion-ready .build-piece,.story.motion-ready .build-word{opacity:0;translate:0 35px;transition:opacity 1.1s ease,translate 1.5s cubic-bezier(.16,1,.3,1),scale 1.6s cubic-bezier(.16,1,.3,1);transition-delay:calc(.12s + var(--i,0)*.16s)}
+.story.motion-ready .story-cutout{translate:0 75px;scale:.94;transition-delay:.42s}
+.story.motion-ready .story-caption,.story.motion-ready .time-signature{transition-delay:.8s}
+.story.motion-ready .story-brand{transition-delay:.05s}
+.story.motion-ready.is-built .build-piece,.story.motion-ready.is-built .build-word{opacity:1;translate:0 0;scale:1}
+.story.motion-ready .time-photo{translate:0 0;scale:1.05}
+.story.motion-ready.is-built .time-photo{scale:1}
+.grain{animation:none;opacity:.065}
+a:focus-visible,button:focus-visible{outline:3px solid var(--rose-deep);outline-offset:5px}
+section[id]{scroll-margin-top:86px}
+@media(min-width:900px){
+ .story-stage{width:min(70vw,calc(96svh * .8));min-width:480px;max-width:800px}
+ .story-margin{display:flex;position:absolute;inset:0 5%;align-items:center;justify-content:space-between;font-size:10px;letter-spacing:.18em;pointer-events:none}
+ .story-margin>span{writing-mode:vertical-rl}
+ .story-margin{writing-mode:vertical-rl}
+ .story-time .story-margin{color:#f4deb4}
+}
+@media(max-width:380px){nav{top:8px;left:8px;right:8px}.story-caption{font-size:2.7cqw}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ *,*::before,*::after{animation:none!important;transition:none!important}
+ .story.motion-ready .build-piece,.story.motion-ready .build-word{opacity:1;translate:none;scale:1}
+}
+.story-bom .word-0{font-size:40cqw}
+.time-hands{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;filter:sepia(.17) saturate(.86)}
+
+/* ajuste: esconder etiquetas de margem (posicionamento inconsistente no desktop) */
+.story-margin{display:none!important}
