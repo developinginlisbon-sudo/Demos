@@ -38,7 +38,7 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   /* strong paper grain on colour blocks (Grainhaus) */
   .grainy{position:relative}
-  .grainy::before{content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.16; mix-blend-mode:overlay;
+  .grainy::before{content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.22; mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); background-size:160px}
   .grainy>*{position:relative; z-index:1}
   /* azulejo tile texture layer */
@@ -72,16 +72,16 @@
   @media(min-width:720px){nav .nav-right a.lnk{display:inline}}
 
   /* ============ HERO (oversized type + layered media) ============ */
-  .hero{position:relative; min-height:100svh; overflow:hidden; display:flex; align-items:center; justify-content:center;
+  .hero{position:relative; min-height:100svh; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center;
     background:radial-gradient(circle, rgba(189,78,108,.1) 1.3px, transparent 1.4px) 0 0/22px 22px, var(--cream)}
   .hero-top{position:absolute; top:76px; left:0; right:0; z-index:4; display:flex; justify-content:space-between; padding:0 22px}
   .hero-top .micro{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); line-height:1.7}
   .hero-top .micro.r{text-align:right}
-  .hero-word{position:absolute; z-index:1; top:50%; left:50%; transform:translate(-50%,-50%);
-    font-family:var(--anton); font-size:46vw; text-transform:uppercase; color:var(--red); white-space:nowrap; letter-spacing:-.02em; will-change:transform}
-  @media(min-width:760px){.hero-word{font-size:30vw}}
-  .hero-media{position:relative; z-index:3; width:min(66vw,320px); aspect-ratio:3/4; border-radius:20px; overflow:hidden;
-    box-shadow:0 40px 80px rgba(42,28,26,.35); animation:floaty 7s ease-in-out infinite}
+  .hero-word{position:relative; z-index:1; font-family:var(--anton); font-size:clamp(44px,23vw,138px); text-transform:uppercase;
+    color:var(--red); white-space:nowrap; letter-spacing:-.01em; line-height:.9; margin-bottom:-7%; will-change:transform}
+  @media(min-width:760px){.hero-word{font-size:15vw; margin-bottom:-5%}}
+  .hero-media{position:relative; z-index:3; width:min(58vw,300px); aspect-ratio:3/4; border-radius:20px; overflow:hidden;
+    box-shadow:24px 40px 80px rgba(42,28,26,.4); animation:floaty 7s ease-in-out infinite}
   .hero-media video{width:100%; height:100%; object-fit:cover}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
   .hero-bottom{position:absolute; z-index:4; bottom:38px; left:0; right:0; display:flex; flex-direction:column; align-items:center; gap:14px; padding:0 22px}
@@ -113,7 +113,8 @@
   .split .row{display:flex; align-items:center; gap:14px; flex-wrap:wrap; color:var(--cream)}
 
   /* ============ ABOUT (scalloped card over photo — Grainhaus) ============ */
-  .about{position:relative; background:var(--rose-deep); color:#fff; overflow:hidden}
+  .about{position:relative; color:#fff; overflow:hidden;
+    background:radial-gradient(90% 70% at 50% 0%, #cb5c7a, var(--rose-deep) 62%, #a53f5c 100%)}
   .about .head{max-width:var(--maxw); margin:0 auto; padding:70px 24px 26px; text-align:center}
   .about .head .script{font-size:clamp(52px,15vw,104px); color:var(--cream); line-height:.8}
   .about .head .tri{display:flex; gap:26px; justify-content:center; flex-wrap:wrap; margin-top:16px; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.82)}
@@ -141,11 +142,17 @@
   .gi .n{display:block; font-family:var(--sans); font-style:normal; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--rose); margin-top:3px}
 
   /* ============ COM MIMO (prato sobre tipo gigante tonal — Lolo) ============ */
-  .conmimo{position:relative; overflow:hidden; background:#8e2a46; color:var(--cream); min-height:94svh; display:grid; place-items:center; padding:92px 20px}
+  .conmimo{position:relative; overflow:hidden; color:var(--cream); min-height:94svh; display:grid; place-items:center; padding:92px 20px;
+    background:
+      radial-gradient(64% 50% at 50% 38%, rgba(255,230,235,.14), transparent 62%),
+      radial-gradient(130% 110% at 46% 42%, #9a3254 0%, #7f2440 60%, #671d35 100%)}
+  /* film grain over the whole scene (like the Lolo photo) */
+  .conmimo::after{content:""; position:absolute; inset:0; z-index:5; pointer-events:none; opacity:.14; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); background-size:170px}
   .cm-word{position:absolute; z-index:1; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; white-space:nowrap;
     font-family:var(--anton); text-transform:uppercase; font-size:clamp(124px,47vw,350px); line-height:.78; letter-spacing:-.01em; color:#d4567a}
   .cm-plate{position:relative; z-index:2; width:min(64vw,360px); aspect-ratio:1/1; border-radius:50%; overflow:hidden;
-    box-shadow:0 40px 90px rgba(0,0,0,.42); border:2px solid rgba(255,255,255,.12)}
+    box-shadow:34px 54px 100px rgba(45,8,22,.6); border:2px solid rgba(255,255,255,.14)}
   .cm-plate img{width:100%; height:100%; object-fit:cover; transition:transform 7s ease}
   .cm-plate:hover img{transform:scale(1.07)}
   .cm-caps{position:absolute; z-index:3; left:0; right:0; bottom:38px; display:flex; justify-content:space-between; gap:8px; padding:0 26px;
@@ -171,7 +178,8 @@
   .menu-note{margin-top:16px; font-size:12px; color:var(--muted); text-align:center}
 
   /* ============ VOICES (verde-musgo granulado — Grainhaus) ============ */
-  .voices{background:var(--green); color:var(--cream); padding:74px 0; overflow:hidden}
+  .voices{color:var(--cream); padding:74px 0; overflow:hidden;
+    background:radial-gradient(95% 75% at 50% -5%, #4b5d35, var(--green) 55%, #303b28 100%)}
   .voices .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
   .voices .head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:30px}
   .voices h2{font-family:var(--anton); font-size:clamp(34px,9vw,64px); text-transform:uppercase; line-height:.9; color:#fff}
@@ -443,7 +451,7 @@
   window.addEventListener('scroll',function(){
     if(!ticking){requestAnimationFrame(function(){
       var y=window.scrollY||0;
-      if(y<window.innerHeight){ hw.style.transform='translate(-50%,calc(-50% + '+(y*0.18)+'px))'; }
+      if(y<window.innerHeight){ hw.style.transform='translateY('+(y*0.12)+'px)'; }
       ticking=false;
     }); ticking=true;}
   },{passive:true});
