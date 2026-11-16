@@ -13,7 +13,7 @@
 <link rel="icon" href="assets/dil-logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Parisienne&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#07080b;
@@ -28,10 +28,10 @@
     --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   }
   *{box-sizing:border-box}
-  html,body{margin:0}
-  html{scroll-behavior:smooth}
+  html,body{margin:0; width:100%; overflow-x:hidden}
+  html{scroll-behavior:smooth; background:var(--bg); -webkit-text-size-adjust:100%}
   body{
-    background:var(--bg); color:var(--ink); font-family:var(--sans);
+    background:var(--bg); color:var(--ink); font-family:var(--sans); min-height:100svh;
     line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
   .mono{font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase}
@@ -107,9 +107,12 @@
   a.card:active{transform:scale(.99)}
   .card-top{display:flex; align-items:center; gap:14px}
   .thumb{
-    width:46px; height:46px; border-radius:11px; flex:none; display:grid; place-items:center;
-    font-size:21px; background:rgba(249,248,248,.06); border:1px solid var(--line);
+    width:50px; height:50px; border-radius:12px; flex:none; display:grid; place-items:center;
+    font-size:21px; background:rgba(249,248,248,.06); border:1px solid var(--line); overflow:hidden;
   }
+  /* branded mini-thumb per establishment */
+  .thumb.augusto{background:radial-gradient(120% 120% at 30% 20%, #fdeef1, #f4c9d2); border-color:rgba(189,78,108,.45)}
+  .thumb.augusto span{font-family:"Parisienne",cursive; font-size:32px; line-height:1; color:#bd4e6c; transform:translateY(1px)}
   .card h3{margin:0; font-family:var(--disp); font-weight:700; font-size:17px; letter-spacing:-.01em}
   .card .kind{color:var(--muted); font-size:12px; margin-top:3px; font-family:var(--mono); letter-spacing:.04em; text-transform:uppercase}
   .arrow{margin-left:auto; color:var(--muted); font-size:22px; flex:none; line-height:1}
@@ -196,7 +199,7 @@
     <div class="grid" id="demo-list">
       <a class="card" href="augusto-lisboa/">
         <div class="card-top">
-          <div class="thumb">🥑</div>
+          <div class="thumb augusto"><span>A</span></div>
           <div>
             <h3>Augusto Lisboa</h3>
             <div class="kind">Brunch · Alfama</div>
