@@ -159,6 +159,16 @@
   .info-row .val small{display:block; font-family:var(--sans); font-size:13px; color:var(--muted); margin-top:2px}
   .map-wrap{border-radius:18px; overflow:hidden; border:1px solid var(--line); min-height:320px}
   .map-wrap iframe{width:100%; height:100%; min-height:320px; border:0; filter:saturate(.92)}
+  .loc-grid{display:grid; gap:20px; margin-top:40px}
+  @media(min-width:760px){.loc-grid{grid-template-columns:1fr 1fr}}
+  .loc{background:var(--paper); border:1px solid var(--line); border-radius:18px; overflow:hidden; transition:box-shadow .3s}
+  .loc:hover{box-shadow:0 18px 36px rgba(189,78,108,.1)}
+  .loc .map-wrap{border:0; border-bottom:1px solid var(--line); border-radius:0; min-height:190px}
+  .loc .map-wrap iframe{min-height:190px}
+  .loc-info{padding:22px}
+  .loc-name{font-family:var(--disp); font-size:24px}
+  .loc-name span{font-family:var(--sans); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--rose); margin-left:8px; vertical-align:middle}
+  .loc-addr{color:var(--ink-soft); font-size:14.5px; line-height:1.5; margin:8px 0 18px}
   .tip{display:flex; gap:12px; align-items:flex-start; margin-top:20px; background:var(--blush-soft); border-radius:14px; padding:16px 18px; font-size:14px; color:var(--ink-soft)}
 
   /* FOOTER */
@@ -217,7 +227,7 @@
     <div class="daylight"></div>
     <div class="vign"></div>
     <div class="hero-inner">
-      <div class="eyebrow tag">Alfama · Lisboa · desde 2023</div>
+      <div class="eyebrow tag">Alfama &amp; Belém · Lisboa · desde 2023</div>
       <h1 class="word">Augusto</h1>
       <div class="sub">Lisboa</div>
       <p class="lead">Brunch de bairro, feito devagar e servido todos os dias.</p>
@@ -261,9 +271,9 @@
     <div class="wrap grid">
       <div class="reveal">
         <div class="kicker">A casa</div>
-        <h2 class="big">Um cantinho rosa<br>no coração de Alfama.</h2>
-        <p class="serif-lead">Mesas de mármore, chão de azulejo cor-de-rosa e um balcão cheio de luz. O Augusto é pequeno de propósito — para que cada brunch seja servido com tempo.</p>
-        <p>Abrimos em 2023 e depressa virámos paragem obrigatória de quem procura café de especialidade e brunch bem feito. O <b>pão de banana da casa</b> e a <b>geleia de abóbora caseira</b> ganharam vida própria — e sim, há fila. Vale cada minuto.</p>
+        <h2 class="big">Dois cantinhos rosa,<br>de Alfama a Belém.</h2>
+        <p class="serif-lead">Mesas de mármore, chão de azulejo cor-de-rosa e balcões cheios de luz. O Augusto nasceu pequeno de propósito — para que cada brunch seja servido com tempo.</p>
+        <p>Abrimos em Alfama em 2023 e depressa virámos paragem obrigatória de quem procura café de especialidade e brunch bem feito. Hoje há também a casa de <b>Belém</b>, maior. O <b>pão de banana da casa</b> e a <b>geleia de abóbora caseira</b> ganharam vida própria — e sim, há fila. Vale cada minuto.</p>
       </div>
       <div style="position:relative" class="reveal">
         <div class="tile-panel">
@@ -350,22 +360,37 @@
   <!-- VISITAR -->
   <section class="visit pad" id="visitar">
     <div class="wrap">
-      <div class="reveal">
-        <div class="kicker">Visitar</div>
-        <h2 class="big">Passe por Alfama</h2>
+      <div class="reveal" style="text-align:center">
+        <div class="kicker" style="display:inline-block">Visitar</div>
+        <h2 class="big">Duas casas em Lisboa</h2>
+        <p class="serif-lead" style="max-width:33ch; margin:14px auto 0">De Alfama a Belém, todos os dias das 08:30 às 16:30.</p>
       </div>
-      <div class="grid">
-        <div class="info-card reveal">
-          <div class="info-row"><div class="lab">Morada</div><div class="val">Rua de Santa Marinha 26<small>1100-491 Lisboa · Alfama / Graça</small></div></div>
-          <div class="info-row"><div class="lab">Horário</div><div class="val">Todos os dias · 08:30 – 16:30<small>Horário a confirmar sazonalmente</small></div></div>
-          <div class="info-row"><div class="lab">Avaliação</div><div class="val"><span class="stars" style="color:var(--gold)">★★★★★</span> 4,8<small>3591 avaliações no Google</small></div></div>
-          <div style="margin-top:22px"><a class="btn btn-primary" href="https://www.google.com/maps/place/Augusto+Lisboa/@38.7144253,-9.1302073,17z" target="_blank" rel="noopener">Abrir no Google Maps</a></div>
-          <div class="tip"><span>☕</span><span><b>Dica:</b> o espaço é pequeno e há filas frequentes. Chegar cedo é meio caminho andado.</span></div>
+      <div class="loc-grid">
+        <div class="loc reveal">
+          <div class="map-wrap">
+            <iframe loading="lazy" title="Mapa — Augusto Lisboa Alfama"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-9.1342%2C38.7124%2C-9.1262%2C38.7164&layer=mapnik&marker=38.7144253%2C-9.1302073"></iframe>
+          </div>
+          <div class="loc-info">
+            <div class="loc-name">Alfama <span>a original</span></div>
+            <div class="loc-addr">Rua de Santa Marinha 26<br>1100-491 Lisboa · Graça</div>
+            <a class="btn btn-primary" href="https://www.google.com/maps/place/Augusto+Lisboa/@38.7144253,-9.1302073,17z" target="_blank" rel="noopener">Abrir no Maps</a>
+          </div>
         </div>
-        <div class="map-wrap reveal">
-          <iframe loading="lazy" title="Mapa — Augusto Lisboa"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-9.1342%2C38.7124%2C-9.1262%2C38.7164&layer=mapnik&marker=38.7144253%2C-9.1302073"></iframe>
+        <div class="loc reveal">
+          <div class="map-wrap">
+            <iframe loading="lazy" title="Mapa — Augusto Lisboa Belém"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-9.2037%2C38.6973%2C-9.1957%2C38.7013&layer=mapnik&marker=38.6993377%2C-9.1997290"></iframe>
+          </div>
+          <div class="loc-info">
+            <div class="loc-name">Belém <span>a maior</span></div>
+            <div class="loc-addr">Calçada da Ajuda 34<br>1300-014 Lisboa · Belém</div>
+            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Augusto%20Lisboa%20Bel%C3%A9m%20Cal%C3%A7ada%20da%20Ajuda%2034" target="_blank" rel="noopener">Abrir no Maps</a>
+          </div>
         </div>
+      </div>
+      <div class="tip reveal" style="max-width:560px; margin:26px auto 0">
+        <span>☕</span><span><b>Dica:</b> os espaços são acolhedores e há filas frequentes. Chegar cedo é meio caminho andado.</span>
       </div>
     </div>
   </section>
@@ -376,12 +401,12 @@
       <div>
         <div class="brand">Augusto</div>
         <div class="sub">Lisboa</div>
-        <p style="color:var(--ink-soft); font-size:14px; margin-top:16px; max-width:30ch">Brunch de bairro em Alfama. Café de especialidade e doces feitos à mão.</p>
+        <p style="color:var(--ink-soft); font-size:14px; margin-top:16px; max-width:30ch">Brunch de bairro em Alfama e Belém. Café de especialidade e doces feitos à mão.</p>
       </div>
       <div>
         <h4>Visitar</h4>
-        <a href="https://www.google.com/maps/place/Augusto+Lisboa/@38.7144253,-9.1302073,17z" target="_blank" rel="noopener">Rua de Santa Marinha 26</a>
-        <a href="#visitar">1100-491 Lisboa</a>
+        <a href="https://www.google.com/maps/place/Augusto+Lisboa/@38.7144253,-9.1302073,17z" target="_blank" rel="noopener">Alfama · Rua de Santa Marinha 26</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Augusto%20Lisboa%20Bel%C3%A9m%20Cal%C3%A7ada%20da%20Ajuda%2034" target="_blank" rel="noopener">Belém · Calçada da Ajuda 34</a>
         <a href="#menu">Todos os dias · 08:30–16:30</a>
       </div>
       <div>
