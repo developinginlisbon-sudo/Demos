@@ -57,11 +57,12 @@
   /* pills */
   .pill{display:inline-flex; align-items:center; gap:8px; border-radius:999px; padding:9px 16px;
     font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap; transition:all .3s}
-  .pill-outline{border:1px solid currentColor}
-  .pill-outline:hover{background:var(--ink); color:var(--cream); border-color:var(--ink)}
-  .pill-fill{background:var(--rose-deep); color:#fff}
-  .pill-fill:hover{background:#9f3c57}
-  .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+  .pill-outline{border:1.5px solid var(--ink); color:var(--ink)}
+  .pill-outline:hover{background:var(--ink); color:var(--cream)}
+  .pill-fill{background:var(--rose-deep); color:#fff; border:1.5px solid var(--ink); box-shadow:3px 3px 0 var(--ink)}
+  .pill-fill:hover{background:#9f3c57; transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink)}
+  .pill-fill:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink)}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor; flex:none}
   .reg{font-size:.5em; vertical-align:super; font-family:var(--sans); font-weight:500; opacity:.8}
   .paren{font-variant:small-caps; letter-spacing:.1em; color:var(--ink-soft); font-size:12px}
 
@@ -84,7 +85,7 @@
 
   /* ---- banda de cápsulas ovais (24th Pizza) ---- */
   .badge-band{display:flex; align-items:center; justify-content:center; gap:clamp(12px,5vw,44px); padding:48px 20px 44px; flex-wrap:wrap; background:var(--cream); position:relative}
-  .badge-oval{display:grid; place-items:center; text-align:center; border:2px solid var(--rose-deep); border-radius:50%;
+  .badge-oval{display:grid; place-items:center; text-align:center; border:2px solid var(--ink); border-radius:50%;
     min-width:112px; padding:16px 20px; color:var(--rose-deep); font-family:var(--sans); font-weight:600; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; line-height:1.4}
   .badge-band .mid{font-family:var(--script); font-size:clamp(34px,10vw,60px); color:var(--ink); line-height:.9; position:relative}
   .badge-band .mid::after{content:""; display:block; height:5px; width:60%; margin:6px auto 0; background:var(--rose-deep); border-radius:3px}
@@ -496,7 +497,7 @@
           <div class="info">
             <div class="nm">Alfama<span class="paren">a original</span></div>
             <div class="ad">Rua de Santa Marinha 26<br>1100-491 Lisboa · Graça</div>
-            <a class="btn-stamp" href="https://www.google.com/maps/place/Augusto+Lisboa/@38.7144253,-9.1302073,17z" target="_blank" rel="noopener"><span class="dot"></span>Abrir no Maps</a>
+            <a class="pill pill-fill" href="https://www.google.com/maps/place/Augusto+Lisboa/@38.7144253,-9.1302073,17z" target="_blank" rel="noopener" style="align-self:flex-start"><span class="dot"></span>Abrir no Maps</a>
           </div>
         </div>
         <div class="loc">
@@ -504,7 +505,7 @@
           <div class="info">
             <div class="nm">Belém<span class="paren">a maior</span></div>
             <div class="ad">Calçada da Ajuda 34<br>1300-014 Lisboa · Belém</div>
-            <a class="btn-stamp" href="https://www.google.com/maps/search/?api=1&query=Augusto%20Lisboa%20Bel%C3%A9m%20Cal%C3%A7ada%20da%20Ajuda%2034" target="_blank" rel="noopener"><span class="dot"></span>Abrir no Maps</a>
+            <a class="pill pill-fill" href="https://www.google.com/maps/search/?api=1&query=Augusto%20Lisboa%20Bel%C3%A9m%20Cal%C3%A7ada%20da%20Ajuda%2034" target="_blank" rel="noopener" style="align-self:flex-start"><span class="dot"></span>Abrir no Maps</a>
           </div>
         </div>
       </div>
