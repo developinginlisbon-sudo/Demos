@@ -107,7 +107,9 @@
 
   /* ============ HERO (oversized type + layered media) ============ */
   .hero{position:relative; min-height:100svh; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    background:radial-gradient(circle, rgba(189,78,108,.1) 1.3px, transparent 1.4px) 0 0/22px 22px, var(--cream)}
+    background:
+      radial-gradient(135% 82% at 50% 44%, rgba(246,237,224,.9) 22%, rgba(246,237,224,.78) 66%, rgba(246,237,224,.64) 100%),
+      url("assets/azulejo-rosa.jpg") center/cover no-repeat, var(--cream)}
   .hero-top{position:absolute; top:76px; left:0; right:0; z-index:4; display:flex; justify-content:space-between; padding:0 22px}
   .hero-top .micro{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); line-height:1.7}
   .hero-top .micro.r{text-align:right}
@@ -313,12 +315,12 @@
   .credit a{color:var(--rose); font-weight:500}
 
   /* ============ LOGÓTIPO EMBLEMA (recriação vetorial do logo circular Augusto) ============ */
-  .logo-badge{display:inline-grid; place-items:center; text-align:center; aspect-ratio:1; border-radius:50%; flex:none;
+  .logo-badge{display:inline-grid; place-items:center; text-align:center; aspect-ratio:1; border-radius:50%; flex:none; overflow:hidden;
     background:var(--cream); line-height:1; position:relative; width:46px;
     border:2px solid var(--blush); box-shadow:inset 0 0 0 1.5px var(--cream), inset 0 0 0 3px var(--gold)}
-  .logo-badge .lg-s{font-family:var(--script); color:var(--ink); line-height:.7; font-size:15px; position:relative; margin-top:.05em}
-  .logo-badge .lg-s::after{content:""; position:absolute; left:-7%; right:-7%; top:60%; height:1px; background:var(--ink); opacity:.5}
-  .logo-badge .lg-l{font-family:var(--sans); color:var(--green); font-weight:600; text-transform:uppercase; line-height:1; font-size:4.5px; letter-spacing:.22em; margin-top:.15em}
+  .logo-badge .lg-s{font-family:var(--script); color:var(--ink); line-height:.72; font-size:11.5px; position:relative; margin-top:.05em}
+  .logo-badge .lg-s::after{content:""; position:absolute; left:-4%; right:-4%; top:58%; height:1px; background:var(--ink); opacity:.5}
+  .logo-badge .lg-l{font-family:var(--sans); color:var(--green); font-weight:600; text-transform:uppercase; line-height:1; font-size:3.8px; letter-spacing:.2em; margin-top:.18em}
   nav .brand.has-badge{line-height:0}
 
   /* ============ COLAGEM / MOODBOARD (posters colados à mão) ============ */
@@ -328,20 +330,22 @@
   .collage .collage-head .script{font-size:clamp(26px,8vw,40px); color:var(--blush); line-height:.9; display:block}
   .collage .collage-head h2{font-family:var(--anton); font-size:clamp(34px,10vw,70px); text-transform:uppercase; line-height:.9; margin-top:6px}
   .collage .collage-head p{font-family:var(--disp); font-style:italic; font-weight:300; font-size:16.5px; color:rgba(255,255,255,.88); max-width:38ch; margin:14px auto 0}
-  .collage-grid{position:relative; z-index:2; max-width:940px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:20px 14px}
-  @media(min-width:760px){.collage-grid{grid-template-columns:repeat(3,1fr); gap:34px 26px}}
-  .col-card{position:relative; background:#fff; padding:9px 9px 34px; border-radius:3px; margin:0;
+  .collage-grid{position:relative; z-index:2; max-width:960px; margin:0 auto; column-count:2; column-gap:16px}
+  @media(min-width:760px){.collage-grid{column-count:3; column-gap:28px}}
+  .col-card{position:relative; display:inline-block; width:100%; break-inside:avoid; -webkit-column-break-inside:avoid;
+    background:#fff; padding:9px 9px 34px; border-radius:3px; margin:0 0 20px;
     box-shadow:0 20px 38px rgba(42,28,26,.26); transform:rotate(var(--r,0deg));
     opacity:0; transition:opacity .75s ease, transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .4s}
+  @media(min-width:760px){.col-card{margin-bottom:30px}}
   .collage-grid.in .col-card{opacity:1}
   .collage-grid.in .col-card:nth-child(1){transition-delay:.02s}.collage-grid.in .col-card:nth-child(2){transition-delay:.1s}
   .collage-grid.in .col-card:nth-child(3){transition-delay:.18s}.collage-grid.in .col-card:nth-child(4){transition-delay:.26s}
   .collage-grid.in .col-card:nth-child(5){transition-delay:.34s}.collage-grid.in .col-card:nth-child(6){transition-delay:.42s}
-  .col-card img{width:100%; aspect-ratio:4/5; object-fit:cover; display:block; border-radius:1px}
-  .col-card figcaption{position:absolute; left:0; right:0; bottom:8px; text-align:center; font-family:var(--script); font-size:19px; color:var(--ink); line-height:1}
+  .col-card img{width:100%; height:auto; display:block; border-radius:1px}
+  .col-card figcaption{margin-top:10px; text-align:center; font-family:var(--script); font-size:19px; color:var(--ink); line-height:1}
   .col-card .tk{position:absolute; top:-9px; left:50%; width:62px; height:20px; transform:translateX(-50%) rotate(-3deg);
     background:rgba(247,217,223,.72); border:1px dashed rgba(42,28,26,.25); border-radius:2px}
-  .col-card:hover{transform:rotate(0deg) scale(1.05); z-index:4; box-shadow:0 26px 48px rgba(42,28,26,.34)}
+  .col-card:hover{transform:rotate(0deg) scale(1.04); z-index:4; box-shadow:0 26px 48px rgba(42,28,26,.34)}
   @media(hover:none){.col-card:hover{transform:rotate(var(--r,0deg))}}
 
   /* reveal */
@@ -470,21 +474,6 @@
  </div><div class="story-margin" aria-hidden="true">SÓ MAIS UMA DENTADA <span>FEITO COM AMOR</span></div>
 </section>
 
-  <!-- POSTER: Matcha Mood -->
-  <section class="story story-matcha" id="sobre" aria-label="UMA PAUSA. UM MATCHA. MATCHA MOOD">
- <div class="story-stage">
- <div class="story-brand build-piece"><span>Augusto</span><small>LISBOA</small></div>
- <div class="matcha-paper build-piece"></div><p class="matcha-note build-piece">O teu<br>momento<br>verde.</p>
- <h2 class="story-type"><span class="build-word word-0" style="--i:0">UMA PAUSA. UM MATCHA.</span><span class="build-word word-1" style="--i:1">MATCHA MOOD</span></h2>
- <svg class="story-cutout build-piece" viewBox="0 0 1122 1402" role="img" aria-label="Matcha com arte de leite">
- <defs><clipPath id="cut-matcha"><path d="M 675,497 C761,486 840,556 861,692 L904,696 Q924,720 916,758 L893,779 C906,846 912,918 935,1030 C956,1116 986,1174 1057,1227 L1057,1368 L952,1368 C891,1270 838,1181 754,1145 C677,1110 603,1104 534,1091 C471,1081 422,1068 417,1043 Q412,1017 443,1004 C324,958 272,848 279,719 C286,579 398,484 541,479 C592,477 638,480 675,497 Z"/></clipPath></defs>
- <image href="assets/poster-matcha-mood.jpg" width="1122" height="1402" preserveAspectRatio="none" clip-path="url(#cut-matcha)"/>
- </svg>
- <p class="story-caption build-piece">Feito para saborear sem pressa.</p>
- </div>
- <div class="story-margin" aria-hidden="true">AUGUSTO LISBOA <span>BRUNCH DE BAIRRO</span></div>
- </section>
-
   <!-- COLAGEM / MOODBOARD -->
   <section class="collage grainy" aria-label="O que se serve à mesa">
     <div class="collage-head reveal">
@@ -498,7 +487,7 @@
       <figure class="col-card" style="--r:-2deg"><span class="tk" aria-hidden="true"></span><img src="assets/poster-pancake-club.jpg" alt="Pancake Club" loading="lazy"><figcaption>Pancake club</figcaption></figure>
       <figure class="col-card" style="--r:2.5deg"><span class="tk" aria-hidden="true"></span><img src="assets/tosta-cream.jpg" alt="Tostas da casa" loading="lazy"><figcaption>Tostas da casa</figcaption></figure>
       <figure class="col-card" style="--r:-3deg"><span class="tk" aria-hidden="true"></span><img src="assets/poster-boa-conversa.jpg" alt="Boa conversa, sem pressa" loading="lazy"><figcaption>Boa conversa</figcaption></figure>
-      <figure class="col-card" style="--r:3.5deg"><span class="tk" aria-hidden="true"></span><img src="assets/poster-matcha-mood.jpg" alt="Matcha mood" loading="lazy"><figcaption>Matcha mood</figcaption></figure>
+      <figure class="col-card" style="--r:3.5deg"><span class="tk" aria-hidden="true"></span><img src="assets/poster-doce-doce.jpg" alt="Doce doce — só mais uma dentada" loading="lazy"><figcaption>Doce doce</figcaption></figure>
     </div>
   </section>
 
@@ -611,7 +600,7 @@
     <div class="foot-clip"><div class="word">Augusto</div></div>
     <div class="foot-grid">
       <div>
-        <span class="logo-badge" style="width:96px;margin-bottom:14px"><span class="lg-s" style="font-size:27px">Augusto</span><span class="lg-l" style="font-size:8.5px">Lisboa</span></span>
+        <span class="logo-badge" style="width:100px;margin-bottom:14px"><span class="lg-s" style="font-size:23px">Augusto</span><span class="lg-l" style="font-size:7px">Lisboa</span></span>
         <p style="color:#d8ccbe; font-size:14px; margin-top:4px; max-width:30ch">Brunch de bairro em Alfama e Belém. Café de especialidade e doces feitos à mão.</p>
       </div>
       <div>
