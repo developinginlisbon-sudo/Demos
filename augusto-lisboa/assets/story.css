@@ -10,6 +10,11 @@
 .story-brand{position:absolute;top:1%;left:0;right:0;text-align:center;z-index:4;line-height:1}
 .story-brand>span{font-family:var(--script);font-size:10cqw;display:block}
 .story-brand small{display:block;font-family:var(--sans);font-size:1.9cqw;letter-spacing:.5em;font-weight:600;margin-top:.6cqw;padding-left:.5em}
+/* palavra real do logo (vetor), pintada com a cor de cada cena */
+.story-brand .wm,.time-signature .wm{display:block;margin:0 auto;aspect-ratio:120/52;background:currentColor;-webkit-mask:url("augusto-wordmark.svg") center/contain no-repeat;mask:url("augusto-wordmark.svg") center/contain no-repeat}
+.story-brand .wm{width:30cqw}
+.time-signature .wm{width:24cqw}
+.story-matcha .story-brand .wm{width:50cqw}
 .story-type{position:absolute;inset:10% 1.6% 4%;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--anton);font-weight:400;line-height:.93;letter-spacing:-.035em;text-align:center;z-index:1}
 .build-word{display:block;transform-origin:50% 100%;font-size:44cqw}
 .story-bom .story-type{font-family:'Archivo Black',Impact,sans-serif;inset:11% 1% 5%;line-height:.92;letter-spacing:-.07em}

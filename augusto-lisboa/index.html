@@ -129,7 +129,9 @@
   .hero-media video{width:100%; height:100%; object-fit:cover}
   .media-cap{position:absolute; z-index:3; left:0; right:0; bottom:18px; text-align:center; color:#fff; font-family:var(--script);
     font-size:clamp(34px,10.5vw,54px); line-height:.8; text-shadow:0 4px 22px rgba(0,0,0,.55); pointer-events:none; padding-right:30px}
-  .media-cap .reg{color:#fff}
+  .media-cap{filter:drop-shadow(0 2px 10px rgba(0,0,0,.55))}
+  .media-cap .wm{display:block; width:68%; margin:0 auto; aspect-ratio:120/52; background:#fff;
+    -webkit-mask:url("assets/augusto-wordmark.svg") center/contain no-repeat; mask:url("assets/augusto-wordmark.svg") center/contain no-repeat}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   .hero-bottom{position:relative; z-index:4; margin-top:22px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center}
   .hero-tag{font-size:clamp(34px,10vw,56px); line-height:.9; color:#fff8ee; text-shadow:0 4px 24px rgba(0,0,0,.4)}
@@ -399,12 +401,8 @@
   .credit a{color:var(--rose); font-weight:500}
 
   /* ============ LOGÓTIPO EMBLEMA (recriação vetorial do logo circular Augusto) ============ */
-  .logo-badge{display:inline-grid; place-items:center; text-align:center; aspect-ratio:1; border-radius:50%; flex:none; overflow:hidden;
-    background:var(--cream); line-height:1; position:relative; width:46px;
-    border:2px solid var(--blush); box-shadow:inset 0 0 0 1.5px var(--cream), inset 0 0 0 3px var(--gold)}
-  .logo-badge .lg-s{font-family:var(--script); color:var(--ink); line-height:.72; font-size:11.5px; position:relative; margin-top:.05em}
-  .logo-badge .lg-s::after{content:""; position:absolute; left:-4%; right:-4%; top:58%; height:1px; background:var(--ink); opacity:.5}
-  .logo-badge .lg-l{font-family:var(--sans); color:var(--green); font-weight:600; text-transform:uppercase; line-height:1; font-size:3.8px; letter-spacing:.2em; margin-top:.18em}
+  .logo-badge{display:inline-block; width:46px; aspect-ratio:1; flex:none; line-height:0; border-radius:50%; box-shadow:0 1px 4px rgba(42,28,26,.2)}
+  .logo-badge img{width:100%; height:100%; display:block}
   nav .brand.has-badge{line-height:0}
 
   /* ============ COLAGEM / MOODBOARD (posters colados à mão) ============ */
@@ -490,7 +488,7 @@
   <!-- NAV -->
   <nav id="nav">
     <a class="brand has-badge" href="#top" aria-label="Augusto Lisboa — início">
-      <span class="logo-badge"><span class="lg-s">Augusto</span><span class="lg-l">Lisboa</span></span>
+      <span class="logo-badge"><img src="assets/augusto-logo.svg" alt="Augusto Lisboa" width="150" height="150"></span>
     </a>
     <div class="nav-right">
       <a class="lnk" href="menu.html">Menu</a>
@@ -511,7 +509,7 @@
       <video id="heroVideo" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
         <source src="assets/hero.mp4" type="video/mp4">
       </video>
-      <span class="media-cap">Lisboa <span class="reg">®</span></span>
+      <span class="media-cap"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></span>
       <button class="vid-ctrl" id="vidCtrl" type="button" aria-label="Pausar vídeo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="4" height="14" rx="1"/><rect x="13" y="5" width="4" height="14" rx="1"/></svg></button>
     </div>
     <div class="hero-bottom">
@@ -550,7 +548,7 @@
   <!-- POSTER: Bom dia Lisboa -->
   <section class="story story-bom" id="manifesto" aria-label="BOM DIA LISBOA">
  <div class="story-stage">
- <div class="story-brand build-piece"><span>Augusto</span><small>LISBOA</small></div>
+ <div class="story-brand build-piece"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></div>
 
  <h2 class="story-type"><span class="build-word word-0" style="--i:0">BOM</span><span class="build-word word-1" style="--i:1">DIA</span><span class="build-word word-2" style="--i:2">LISBOA</span></h2>
  <svg class="story-cutout build-piece" viewBox="0 0 1122 1402" role="img" aria-label="Prato de brunch Augusto Lisboa">
@@ -584,7 +582,7 @@
  <div class="story-stage">
  <img class="time-photo build-piece" src="assets/pancake-maos.jpg" alt="Panquecas com fruta e talheres dourados" loading="lazy" width="1000" height="1245">
  <h2 class="time-type"><span class="build-word" style="--i:0">TIME</span><span class="build-word" style="--i:1">TO</span><span class="build-word" style="--i:2">EAT</span></h2>
- <svg class="time-hands build-piece" viewBox="0 0 1000 1245" aria-hidden="true"><defs><clipPath id="time-hands-mask"><path d="M0 0 L252 0 Q320 44 346 105 L355 251 Q353 319 332 350 L306 342 L291 284 Q265 316 235 303 L202 283 L174 252 L149 208 L140 154 L0 168 Z M1000 322 Q923 306 871 290 Q836 278 814 311 L759 388 Q727 440 734 474 L752 479 L778 437 Q764 512 788 532 Q811 537 826 496 L847 470 Q878 491 895 463 L918 443 L1000 424 Z"/></clipPath></defs><image href="assets/pancake-maos.jpg" width="1000" height="1245" preserveAspectRatio="none" clip-path="url(#time-hands-mask)"/></svg><div class="time-signature build-piece"><span class="script">Augusto</span><small>LISBOA</small></div>
+ <svg class="time-hands build-piece" viewBox="0 0 1000 1245" aria-hidden="true"><defs><clipPath id="time-hands-mask"><path d="M0 0 L252 0 Q320 44 346 105 L355 251 Q353 319 332 350 L306 342 L291 284 Q265 316 235 303 L202 283 L174 252 L149 208 L140 154 L0 168 Z M1000 322 Q923 306 871 290 Q836 278 814 311 L759 388 Q727 440 734 474 L752 479 L778 437 Q764 512 788 532 Q811 537 826 496 L847 470 Q878 491 895 463 L918 443 L1000 424 Z"/></clipPath></defs><image href="assets/pancake-maos.jpg" width="1000" height="1245" preserveAspectRatio="none" clip-path="url(#time-hands-mask)"/></svg><div class="time-signature build-piece"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></div>
  </div><div class="story-margin" aria-hidden="true">SÓ MAIS UMA DENTADA <span>FEITO COM AMOR</span></div>
 </section>
 
@@ -648,7 +646,7 @@
   <!-- POSTER: Doce Doce -->
   <section class="story story-doce"  aria-label="DOCE DOCE">
  <div class="story-stage">
- <div class="story-brand build-piece"><span>Augusto</span><small>LISBOA</small></div>
+ <div class="story-brand build-piece"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></div>
 
  <h2 class="story-type"><span class="build-word word-0" style="--i:0">DOCE</span><span class="build-word word-1" style="--i:1">DOCE</span></h2>
  <svg class="story-cutout build-piece" viewBox="0 0 1122 1402" role="img" aria-label="Prato de brunch Augusto Lisboa">
@@ -679,7 +677,7 @@
   <!-- POSTER: Boa Companhia -->
   <section class="story story-boa"  aria-label="BOA COMPANHIA">
  <div class="story-stage">
- <div class="story-brand build-piece"><span>Augusto</span><small>LISBOA</small></div>
+ <div class="story-brand build-piece"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></div>
 
  <h2 class="story-type"><span class="build-word word-0" style="--i:0">BOA</span><span class="build-word word-1" style="--i:1">COMPANHIA</span></h2>
  <svg class="story-cutout build-piece" viewBox="0 0 1122 1402" role="img" aria-label="Prato de brunch Augusto Lisboa">
@@ -777,7 +775,7 @@
     <div class="foot-clip"><div class="word">Augusto</div></div>
     <div class="foot-grid">
       <div>
-        <span class="logo-badge" style="width:100px;margin-bottom:14px"><span class="lg-s" style="font-size:23px">Augusto</span><span class="lg-l" style="font-size:7px">Lisboa</span></span>
+        <span class="logo-badge" style="width:100px;margin-bottom:14px"><img src="assets/augusto-logo.svg" alt="Augusto Lisboa" width="150" height="150"></span>
         <p style="color:#d8ccbe; font-size:14px; margin-top:4px; max-width:30ch">Brunch de bairro em Alfama e Belém. Café de especialidade e doces feitos à mão.</p>
       </div>
       <div>

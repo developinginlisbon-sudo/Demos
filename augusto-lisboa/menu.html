@@ -28,12 +28,8 @@
   .checker{background:repeating-conic-gradient(var(--blush-chk) 0% 25%, var(--cream) 0% 50%) 50% / 58px 58px}
 
   /* logótipo emblema (recriação vetorial do logo circular) */
-  .logo-badge{display:inline-grid; place-items:center; text-align:center; aspect-ratio:1; border-radius:50%; flex:none; overflow:hidden;
-    background:var(--cream); line-height:1; position:relative; width:46px;
-    border:2px solid var(--blush); box-shadow:inset 0 0 0 1.5px var(--cream), inset 0 0 0 3px var(--gold)}
-  .logo-badge .lg-s{font-family:var(--script); color:var(--ink); line-height:.72; font-size:11.5px; position:relative; margin-top:.05em}
-  .logo-badge .lg-s::after{content:""; position:absolute; left:-4%; right:-4%; top:58%; height:1px; background:var(--ink); opacity:.5}
-  .logo-badge .lg-l{font-family:var(--sans); color:#3c4a34; font-weight:600; text-transform:uppercase; line-height:1; font-size:3.8px; letter-spacing:.2em; margin-top:.18em}
+  .logo-badge{display:inline-block; width:46px; aspect-ratio:1; flex:none; line-height:0; border-radius:50%; box-shadow:0 1px 4px rgba(42,28,26,.2)}
+  .logo-badge img{width:100%; height:100%; display:block}
 
   nav{position:fixed; top:12px; left:12px; right:12px; z-index:100; display:flex; align-items:center; justify-content:space-between;
     padding:8px 10px 8px 18px; border-radius:999px; border:1.5px solid var(--ink); background:rgba(246,237,224,.86); backdrop-filter:blur(10px)}
@@ -80,14 +76,14 @@
 
   <nav>
     <a class="brand" href="index.html" aria-label="Augusto Lisboa — início" style="line-height:0">
-      <span class="logo-badge"><span class="lg-s">Augusto</span><span class="lg-l">Lisboa</span></span>
+      <span class="logo-badge"><img src="assets/augusto-logo.svg" alt="Augusto Lisboa" width="150" height="150"></span>
     </a>
     <a class="back" href="index.html"><svg viewBox="0 0 24 24"><path d="M10 7l-5 5 5 5M5 12h14"/></svg>Voltar</a>
   </nav>
 
   <header class="top checker">
     <div class="wrap">
-      <span class="logo-badge" style="width:92px;margin-bottom:14px"><span class="lg-s" style="font-size:21px">Augusto</span><span class="lg-l" style="font-size:6.5px">Lisboa</span></span>
+      <span class="logo-badge" style="width:92px;margin-bottom:14px"><img src="assets/augusto-logo.svg" alt="Augusto Lisboa" width="150" height="150"></span>
       <div class="script">o nosso</div>
       <h1>Menu</h1>
       <p>Servido do pequeno-almoço ao fim da tarde, todos os dias. Tudo preparado na hora.</p>
@@ -126,8 +122,7 @@
   </main>
 
   <footer class="foot">
-    <div class="brand">Augusto</div>
-    <div class="sub">Lisboa</div>
+    <span class="logo-badge" style="width:104px"><img src="assets/augusto-logo.svg" alt="Augusto Lisboa" width="150" height="150"></span>
     <a class="home" href="index.html"><svg viewBox="0 0 24 24"><path d="M10 7l-5 5 5 5M5 12h14"/></svg>Voltar ao início</a>
     <div class="credit">Demo criada pelo estúdio <a href="https://developinginlisbon.com" target="_blank" rel="noopener">Developing in Lisbon</a> · não é o site oficial do Augusto Lisboa</div>
   </footer>
