@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Developing in Lisbon — Demos</title>
+<meta name="description" content="Sites-demonstração de estabelecimentos locais em Lisboa, criados pelo estúdio Developing in Lisbon.">
+<style>
+  :root{
+    --bg:#0e1116; --bg-soft:#161b22; --card:#1b2129; --line:#2a3139;
+    --ink:#f2f4f7; --muted:#9aa4b2; --accent:#f6c343; --accent-ink:#1a1205;
+    --radius:18px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#f6f7f9; --bg-soft:#ffffff; --card:#ffffff; --line:#e6e9ee;
+      --ink:#161b22; --muted:#5a6472; --accent:#c8860a; --accent-ink:#ffffff;
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--font);
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    padding:0 16px; display:flex; flex-direction:column; min-height:100vh;
+  }
+  .wrap{width:100%; max-width:720px; margin:0 auto; flex:1 0 auto}
+
+  header{padding:56px 0 28px; text-align:center}
+  .badge{
+    display:inline-block; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); font-weight:700; margin-bottom:14px;
+  }
+  h1{font-size:30px; line-height:1.15; margin:0 0 10px; letter-spacing:-.02em}
+  .tag{color:var(--muted); font-size:16px; margin:0 auto; max-width:46ch}
+
+  .section-label{
+    font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+    font-weight:700; margin:30px 4px 14px;
+  }
+
+  .grid{display:grid; gap:14px}
+  a.card{
+    display:block; text-decoration:none; color:inherit;
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 18px; transition:transform .15s ease, border-color .15s ease;
+  }
+  a.card:active{transform:scale(.99)}
+  a.card:hover{border-color:var(--accent)}
+  .card-top{display:flex; align-items:center; gap:14px}
+  .thumb{
+    width:48px; height:48px; border-radius:12px; flex:none;
+    display:grid; place-items:center; font-size:22px;
+    background:var(--bg-soft); border:1px solid var(--line);
+  }
+  .card h3{margin:0; font-size:17px; letter-spacing:-.01em}
+  .card .kind{color:var(--muted); font-size:13px; margin-top:2px}
+  .arrow{margin-left:auto; color:var(--muted); font-size:20px; flex:none}
+
+  .empty{
+    background:var(--bg-soft); border:1px dashed var(--line); border-radius:var(--radius);
+    padding:30px 22px; text-align:center; color:var(--muted);
+  }
+  .empty strong{color:var(--ink); display:block; margin-bottom:6px; font-size:16px}
+
+  footer{
+    flex-shrink:0; text-align:center; color:var(--muted); font-size:13px;
+    padding:36px 0 28px; margin-top:24px; border-top:1px solid var(--line);
+  }
+  footer a{color:var(--accent); text-decoration:none}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="badge">Developing in Lisbon</span>
+      <h1>Demos de estabelecimentos</h1>
+      <p class="tag">Pequenos sites para restaurantes, cafés, barbearias e lojas de Lisboa. Toca num para ver.</p>
+    </header>
+
+    <main>
+      <div class="section-label">Estabelecimentos</div>
+
+      <!-- MONTRA: os cartões das demos entram aqui.
+           Modelo de cartão (copiar e preencher):
+
+      <a class="card" href="nome-do-estabelecimento/">
+        <div class="card-top">
+          <div class="thumb">🍽️</div>
+          <div>
+            <h3>Nome do Estabelecimento</h3>
+            <div class="kind">Restaurante · Zona</div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+      </a>
+      -->
+
+      <div class="grid" id="demos">
+        <div class="empty">
+          <strong>Ainda sem demos publicadas</strong>
+          A primeira aparece aqui assim que estiver pronta.
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    Feito pelo estúdio <strong>Developing in Lisbon</strong> · Lisboa<br>
+    <a href="https://github.com/developinginlisbon-sudo/Demos">Repositório no GitHub</a>
+  </footer>
+</body>
+</html>
