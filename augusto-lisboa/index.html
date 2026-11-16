@@ -113,7 +113,7 @@
   .hero{position:relative; min-height:100svh; overflow:hidden; isolation:isolate; display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding:122px 20px 34px; background:#3a2a24; color:#fff8ee}
   .hero-bg{position:absolute; inset:0; z-index:-1; overflow:hidden}
-  .hero-bg img{width:100%; height:100%; object-fit:cover; object-position:50% 30%; animation:heroZoom 2.6s cubic-bezier(.2,.7,.2,1) both}
+  .hero-bg video{width:100%; height:100%; object-fit:cover; object-position:50% 30%; animation:heroZoom 2.6s cubic-bezier(.2,.7,.2,1) both}
   .hero-bg::after{content:""; position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(36,22,18,.55) 0%, rgba(36,22,18,.18) 30%, rgba(36,22,18,.22) 58%, rgba(36,22,18,.72) 100%)}
   @keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
@@ -462,7 +462,7 @@
     .col-card{opacity:1; transition:none}
     .poster.reveal{clip-path:none} .poster.reveal img{transform:none}
     .wipe{clip-path:none}
-    .hero-top,.hero-word,.hero-media,.hero-bottom,.hero-bg img{animation:none; opacity:1}
+    .hero-top,.hero-word,.hero-media,.hero-bottom,.hero-bg video{animation:none; opacity:1}
     .marquee .track,.grain{animation:none}
     .cl-track{animation:none; width:auto; overflow-x:auto; padding:0 24px}
   }
@@ -499,7 +499,10 @@
 
   <!-- HERO -->
   <header class="hero" id="top">
-    <div class="hero-bg" aria-hidden="true"><img src="assets/hero-sala.jpg" alt="" fetchpriority="high" width="1440" height="1800"></div>
+    <div class="hero-bg" aria-hidden="true">
+      <video id="heroBg" muted loop playsinline preload="auto" poster="assets/hero-sala.jpg"
+        data-wide="assets/hero-lapse-1080p.mp4" data-tall="assets/hero-lapse-vertical.mp4"></video>
+    </div>
     <div class="hero-top">
       <div class="micro">Alfama<br>&amp; Belém</div>
       <div class="micro r">Brunch<br>o dia todo</div>
@@ -828,14 +831,37 @@
   }
 
   // controlo play/pause do vídeo da hero
-  var vid=document.getElementById('heroVideo'), vc=document.getElementById('vidCtrl');
+  // (pausa o vídeo do arco e o time-lapse de fundo; com "reduzir movimento" ficam parados)
+  var vid=document.getElementById('heroVideo'), vc=document.getElementById('vidCtrl'), bg=document.getElementById('heroBg');
+  var userPaused=rm, heroVisible=true;
+  var tall=window.matchMedia('(orientation: portrait)');
+  function pickBg(){
+    if(!bg) return;
+    var src=bg.getAttribute(tall.matches?'data-tall':'data-wide');
+    if(bg.getAttribute('src')!==src){ bg.setAttribute('src',src); bg.load(); }
+  }
+  function sync(){
+    [vid,bg].forEach(function(v){
+      if(!v) return;
+      if(userPaused||!heroVisible) v.pause();
+      else { var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+    });
+  }
+  if(bg && !rm){
+    pickBg(); sync();
+    if(tall.addEventListener) tall.addEventListener('change',function(){ pickBg(); sync(); });
+    new IntersectionObserver(function(es){ heroVisible=es[0].isIntersecting; sync(); }).observe(document.getElementById('top'));
+  }
   if(vid&&vc){
-    if(rm) { vid.pause(); vc.setAttribute("aria-label","Reproduzir vídeo"); }
     var icoPause='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="4" height="14" rx="1"/><rect x="13" y="5" width="4" height="14" rx="1"/></svg>';
     var icoPlay='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+    function paint(){ vc.innerHTML=userPaused?icoPlay:icoPause; vc.setAttribute('aria-label',userPaused?'Reproduzir vídeos':'Pausar vídeos'); }
+    if(rm) vid.pause();
+    paint();
     vc.addEventListener('click',function(){
-      if(vid.paused){ vid.play(); vc.innerHTML=icoPause; vc.setAttribute('aria-label','Pausar vídeo'); }
-      else { vid.pause(); vc.innerHTML=icoPlay; vc.setAttribute('aria-label','Reproduzir vídeo'); }
+      userPaused=!userPaused; paint();
+      if(!userPaused && bg && !bg.getAttribute('src')) pickBg();
+      sync();
     });
   }
 
