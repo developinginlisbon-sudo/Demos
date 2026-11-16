@@ -109,11 +109,12 @@
     background:rgba(42,28,26,.42); color:#fff; display:grid; place-items:center; cursor:pointer; backdrop-filter:blur(4px); padding:0}
   .vid-ctrl svg{width:15px; height:15px; fill:#fff}
 
-  /* ============ HERO (a sala verdadeira + tipo gigante + arco com vídeo) ============ */
+  /* ============ HERO (vídeo em ecrã inteiro + tipo gigante) ============ */
   .hero{position:relative; min-height:100svh; overflow:hidden; isolation:isolate; display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding:122px 20px 34px; background:#3a2a24; color:#fff8ee}
   .hero-bg{position:absolute; inset:0; z-index:-1; overflow:hidden}
-  .hero-bg video{width:100%; height:100%; object-fit:cover; object-position:50% 30%; animation:heroZoom 2.6s cubic-bezier(.2,.7,.2,1) both}
+  .hero-bg video{width:100%; height:100%; object-fit:cover; object-position:50% 50%; animation:heroZoom 2.6s cubic-bezier(.2,.7,.2,1) both}
+  .hero>.vid-ctrl{bottom:22px; right:20px; width:40px; height:40px}
   .hero-bg::after{content:""; position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(36,22,18,.55) 0%, rgba(36,22,18,.18) 30%, rgba(36,22,18,.22) 58%, rgba(36,22,18,.72) 100%)}
   @keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
@@ -121,17 +122,9 @@
   .hero-top .micro{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,248,238,.88); line-height:1.7}
   .hero-top .micro.r{text-align:right}
   .hero-word{position:relative; z-index:2; font-family:var(--anton); font-size:clamp(44px,23vw,138px); text-transform:uppercase;
-    color:#fff8ee; white-space:nowrap; letter-spacing:-.01em; line-height:.9; margin-bottom:-.2em; will-change:transform;
+    color:#fff8ee; white-space:nowrap; letter-spacing:-.01em; line-height:.9; will-change:transform;
     text-shadow:0 6px 34px rgba(30,16,12,.35)}
   @media(min-width:760px){.hero-word{font-size:13vw}}
-  .hero-media{position:relative; z-index:3; width:min(52vw,290px); aspect-ratio:3/4.1; border-radius:999px 999px 16px 16px; overflow:hidden;
-    border:5px solid #fff8ee; box-shadow:0 24px 60px rgba(20,10,8,.4); animation:floaty 7s ease-in-out infinite}
-  .hero-media video{width:100%; height:100%; object-fit:cover}
-  .media-cap{position:absolute; z-index:3; left:0; right:0; bottom:18px; text-align:center; color:#fff; font-family:var(--script);
-    font-size:clamp(34px,10.5vw,54px); line-height:.8; text-shadow:0 4px 22px rgba(0,0,0,.55); pointer-events:none; padding-right:30px}
-  .media-cap{filter:drop-shadow(0 2px 10px rgba(0,0,0,.55))}
-  .media-cap .wm{display:block; width:68%; margin:0 auto; aspect-ratio:120/52; background:#fff;
-    -webkit-mask:url("assets/augusto-wordmark.svg") center/contain no-repeat; mask:url("assets/augusto-wordmark.svg") center/contain no-repeat}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   .hero-bottom{position:relative; z-index:4; margin-top:22px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center}
   .hero-tag{font-size:clamp(34px,10vw,56px); line-height:.9; color:#fff8ee; text-shadow:0 4px 24px rgba(0,0,0,.4)}
@@ -143,7 +136,6 @@
   @media(min-width:760px){
     .hero{padding-top:96px}
     .hero-word{font-size:min(13vw,19svh)}
-    .hero-media{width:min(52vw,280px,calc((100svh - 480px) * .73)); min-width:190px}
     .hero-bottom{margin-top:18px; gap:12px}
     .hero-tag{font-size:clamp(34px,5.4svh,48px)}
   }
@@ -451,7 +443,6 @@
   @keyframes hArch{from{opacity:0; clip-path:inset(0 0 100% 0)}to{opacity:1; clip-path:inset(0 0 0 0)}}
   .hero-top{animation:hIn .9s both .15s}
   .hero-word{animation:hFade 1s both .35s}
-  .hero-media{animation:hArch 1.1s both .55s, floaty 7s ease-in-out infinite 1.7s}
   .hero-bottom{animation:hIn 1s both .8s}
   .hero-scroll{animation:bob 2.2s ease-in-out infinite, hFade 1s both 1.1s}
   /* títulos grandes constroem-se (wipe a subir) */
@@ -462,7 +453,7 @@
     .col-card{opacity:1; transition:none}
     .poster.reveal{clip-path:none} .poster.reveal img{transform:none}
     .wipe{clip-path:none}
-    .hero-top,.hero-word,.hero-media,.hero-bottom,.hero-bg video{animation:none; opacity:1}
+    .hero-top,.hero-word,.hero-bottom,.hero-bg video{animation:none; opacity:1}
     .marquee .track,.grain{animation:none}
     .cl-track{animation:none; width:auto; overflow-x:auto; padding:0 24px}
   }
@@ -500,21 +491,14 @@
   <!-- HERO -->
   <header class="hero" id="top">
     <div class="hero-bg" aria-hidden="true">
-      <video id="heroBg" muted loop playsinline preload="auto" poster="assets/hero-sala.jpg"
-        data-wide="assets/hero-lapse-1080p.mp4" data-tall="assets/hero-lapse-vertical.mp4"></video>
+      <video id="heroBg" muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" data-src="assets/hero.mp4"></video>
     </div>
     <div class="hero-top">
       <div class="micro">Alfama<br>&amp; Belém</div>
       <div class="micro r">Brunch<br>o dia todo</div>
     </div>
     <h1 class="hero-word" id="heroWord">Augusto</h1>
-    <div class="hero-media">
-      <video id="heroVideo" autoplay muted loop playsinline poster="assets/hero-poster.jpg">
-        <source src="assets/hero.mp4" type="video/mp4">
-      </video>
-      <span class="media-cap"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></span>
-      <button class="vid-ctrl" id="vidCtrl" type="button" aria-label="Pausar vídeo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="4" height="14" rx="1"/><rect x="13" y="5" width="4" height="14" rx="1"/></svg></button>
-    </div>
+    <button class="vid-ctrl" id="vidCtrl" type="button" aria-label="Pausar vídeo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="4" height="14" rx="1"/><rect x="13" y="5" width="4" height="14" rx="1"/></svg></button>
     <div class="hero-bottom">
       <p class="hero-tag script">Better food, better mood.</p>
       <div class="hero-ctas">
@@ -831,38 +815,25 @@
   }
 
   // controlo play/pause do vídeo da hero
-  // (pausa o vídeo do arco e o time-lapse de fundo; com "reduzir movimento" ficam parados)
-  var vid=document.getElementById('heroVideo'), vc=document.getElementById('vidCtrl'), bg=document.getElementById('heroBg');
+  // (vídeo em ecrã inteiro; pausa fora do ecrã; com "reduzir movimento" fica o poster)
+  var vc=document.getElementById('vidCtrl'), bg=document.getElementById('heroBg');
   var userPaused=rm, heroVisible=true;
-  var tall=window.matchMedia('(orientation: portrait)');
-  function pickBg(){
-    if(!bg) return;
-    var src=bg.getAttribute(tall.matches?'data-tall':'data-wide');
-    if(bg.getAttribute('src')!==src){ bg.setAttribute('src',src); bg.load(); }
-  }
+  function load(){ if(bg && !bg.getAttribute('src')){ bg.setAttribute('src',bg.getAttribute('data-src')); bg.load(); } }
   function sync(){
-    [vid,bg].forEach(function(v){
-      if(!v) return;
-      if(userPaused||!heroVisible) v.pause();
-      else { var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
-    });
+    if(!bg || !bg.getAttribute('src')) return;
+    if(userPaused||!heroVisible) bg.pause();
+    else { var p=bg.play(); if(p&&p.catch) p.catch(function(){}); }
   }
-  if(bg && !rm){
-    pickBg(); sync();
-    if(tall.addEventListener) tall.addEventListener('change',function(){ pickBg(); sync(); });
+  if(bg){
+    if(!rm){ load(); sync(); }
     new IntersectionObserver(function(es){ heroVisible=es[0].isIntersecting; sync(); }).observe(document.getElementById('top'));
   }
-  if(vid&&vc){
+  if(bg&&vc){
     var icoPause='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="5" width="4" height="14" rx="1"/><rect x="13" y="5" width="4" height="14" rx="1"/></svg>';
     var icoPlay='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
-    function paint(){ vc.innerHTML=userPaused?icoPlay:icoPause; vc.setAttribute('aria-label',userPaused?'Reproduzir vídeos':'Pausar vídeos'); }
-    if(rm) vid.pause();
+    function paint(){ vc.innerHTML=userPaused?icoPlay:icoPause; vc.setAttribute('aria-label',userPaused?'Reproduzir vídeo':'Pausar vídeo'); }
     paint();
-    vc.addEventListener('click',function(){
-      userPaused=!userPaused; paint();
-      if(!userPaused && bg && !bg.getAttribute('src')) pickBg();
-      sync();
-    });
+    vc.addEventListener('click',function(){ userPaused=!userPaused; paint(); if(!userPaused) load(); sync(); });
   }
 
   // estado real (hora de Lisboa): aberto todos os dias 08:30–16:30
