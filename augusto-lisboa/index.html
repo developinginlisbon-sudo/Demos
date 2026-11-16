@@ -64,7 +64,8 @@
   /* POSTER (imagens geradas) */
   .poster{max-width:720px; margin:0 auto; overflow:hidden; display:block}
   .poster.wide{max-width:1120px}
-  .poster img{width:100%; height:auto; display:block}
+  .poster img{width:100%; height:auto; display:block; aspect-ratio:1122/1402}
+  .poster.wide img{aspect-ratio:3/2}
 
   /* NAV */
   nav{position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between;
@@ -270,8 +271,21 @@
   /* reveal */
   .reveal{opacity:0; transform:translateY(26px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1; transform:none}
+  /* poster "build": wipe de baixo para cima + zoom a assentar */
+  .poster.reveal{opacity:1; transform:none; clip-path:inset(100% 0 0 0); transition:clip-path 1.15s cubic-bezier(.16,.8,.24,1)}
+  .poster.reveal.in{clip-path:inset(0 0 0 0)}
+  .poster.reveal img{transform:scale(1.14); transition:transform 1.6s cubic-bezier(.16,.8,.24,1); transform-origin:center}
+  .poster.reveal.in img{transform:scale(1)}
+  /* stagger: itens constroem-se um a um */
+  .stagger>*{opacity:0; transform:translateY(24px); transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1)}
+  .stagger.in>*{opacity:1; transform:none}
+  .stagger.in>*:nth-child(1){transition-delay:.04s}.stagger.in>*:nth-child(2){transition-delay:.11s}
+  .stagger.in>*:nth-child(3){transition-delay:.18s}.stagger.in>*:nth-child(4){transition-delay:.25s}
+  .stagger.in>*:nth-child(5){transition-delay:.32s}.stagger.in>*:nth-child(6){transition-delay:.39s}
+  .stagger.in>*:nth-child(7){transition-delay:.46s}.stagger.in>*:nth-child(8){transition-delay:.53s}
   @media (prefers-reduced-motion:reduce){
-    .reveal{opacity:1; transform:none; transition:none}
+    .reveal,.stagger>*{opacity:1; transform:none; transition:none}
+    .poster.reveal{clip-path:none} .poster.reveal img{transform:none}
     .hero-media,.marquee .track,.hero-scroll{animation:none}
   }
 </style>
@@ -347,7 +361,7 @@
       <h2>O que sai<br>da cozinha</h2>
       <span class="script">servido com amor</span>
     </div>
-    <div class="gal reveal">
+    <div class="gal stagger">
       <div class="gi"><figure><img src="assets/dois-pratos.jpg" alt="Avocado toast e tosta de presunto" loading="lazy"></figure><figcaption>Difícil de escolher.<span class="n">Avo · Presunto</span></figcaption></div>
       <div class="gi"><figure><img src="assets/avo-vedette.jpg" alt="Avocado toast com fitas de cenoura" loading="lazy"></figure><figcaption>The vedette.<span class="n">Avocado toast</span></figcaption></div>
       <div class="gi"><figure><img src="assets/matcha.jpg" alt="Matcha latte com arte" loading="lazy"></figure><figcaption>Organic premium.<span class="n">Matcha</span></figcaption></div>
@@ -395,7 +409,7 @@
         <h2>O que<br>dizem</h2>
         <div class="score">4,8<small>★ · 3591 avaliações · Google</small></div>
       </div>
-      <div class="v-grid reveal">
+      <div class="v-grid stagger">
         <div class="voice"><div class="q">"Os visitantes adoram o pão de banana da casa."</div><div class="s">Destaque do Google</div></div>
         <div class="voice"><div class="q">"Clientes destacam a geleia de abóbora caseira."</div><div class="s">Destaque do Google</div></div>
         <div class="voice"><div class="q">"Há filas frequentes — convém chegar cedo."</div><div class="s">Destaque do Google</div></div>
@@ -414,8 +428,8 @@
         <h2>Duas casas<br>em Lisboa</h2>
         <p class="paren" style="margin-top:12px; font-size:13px">(e todos os dias das 08:30 às 16:30)</p>
       </div>
-      <div class="loc-grid">
-        <div class="loc reveal">
+      <div class="loc-grid stagger">
+        <div class="loc">
           <div class="map"><iframe loading="lazy" title="Mapa Alfama" src="https://www.openstreetmap.org/export/embed.html?bbox=-9.1342%2C38.7124%2C-9.1262%2C38.7164&layer=mapnik&marker=38.7144253%2C-9.1302073"></iframe></div>
           <div class="info">
             <div class="nm">Alfama<span class="paren">a original</span></div>
@@ -423,7 +437,7 @@
             <a class="pill pill-fill" href="https://www.google.com/maps/place/Augusto+Lisboa/@38.7144253,-9.1302073,17z" target="_blank" rel="noopener" style="align-self:flex-start"><span class="dot"></span>Abrir no Maps</a>
           </div>
         </div>
-        <div class="loc reveal">
+        <div class="loc">
           <div class="map"><iframe loading="lazy" title="Mapa Belém" src="https://www.openstreetmap.org/export/embed.html?bbox=-9.2037%2C38.6973%2C-9.1957%2C38.7013&layer=mapnik&marker=38.6993377%2C-9.1997290"></iframe></div>
           <div class="info">
             <div class="nm">Belém<span class="paren">a maior</span></div>
@@ -467,8 +481,8 @@
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
   // reveal
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('.reveal,.stagger').forEach(function(el){io.observe(el);});
 
   // hero parallax on the giant word
   var hw=document.getElementById('heroWord');
