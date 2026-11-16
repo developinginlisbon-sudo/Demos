@@ -61,6 +61,11 @@
   .reg{font-size:.5em; vertical-align:super; font-family:var(--sans); font-weight:500; opacity:.8}
   .paren{font-variant:small-caps; letter-spacing:.1em; color:var(--ink-soft); font-size:12px}
 
+  /* POSTER (imagens geradas) */
+  .poster{max-width:720px; margin:0 auto; overflow:hidden; display:block}
+  .poster.wide{max-width:1120px}
+  .poster img{width:100%; height:auto; display:block}
+
   /* NAV */
   nav{position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between;
     padding:14px 20px; transition:background .4s, box-shadow .4s, padding .4s}
@@ -324,57 +329,17 @@
     </div>
   </div>
 
-  <!-- SPLIT STATEMENT -->
-  <section class="split grainy reveal" id="manifesto">
-    <div class="ph"><img src="assets/dois-pratos.jpg" alt="Dois pratos de brunch segurados à mesa"></div>
-    <div class="tx">
-      <div class="eyebrow">entre uma chávena e outra</div>
-      <h2>Não é só<br>um brunch.<br>é <span class="hl">o ritual<svg viewBox="0 0 300 90" preserveAspectRatio="none"><path d="M12 56 C60 20 250 16 290 44 C300 64 210 82 120 80 C44 78 8 70 20 48"/></svg></span><br>da manhã.</h2>
-      <p class="sub">Servido devagar, todos os dias, de Alfama a Belém. Café de especialidade e doces feitos à mão.</p>
-      <div class="row">
-        <a class="pill pill-fill" href="#menu"><span class="dot"></span>Ver o menu</a>
-        <span class="paren">(e ficar a manhã toda)</span>
-      </div>
-    </div>
-  </section>
+  <!-- POSTER: Bom dia Lisboa -->
+  <section class="poster reveal" id="manifesto"><img src="assets/poster-bom-dia.jpg" alt="Bom dia Lisboa — brunch no Augusto" loading="lazy"></section>
 
-  <!-- HORA DE COMER (letras espalhadas sobre foto) -->
-  <section class="tte">
-    <div class="veil"></div>
-    <div class="tte-letters reveal">
-      <span>H</span><span>O</span><span>R</span><span>A</span><span class="brk"></span>
-      <span>D</span><span>E</span><span class="brk"></span>
-      <span>C</span><span>O</span>
-      <span class="emblem"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="bg" cx="24" cy="24" r="23.5"/><g fill="none" stroke="#bd4e6c" stroke-width="2"><path d="M24 10 C31 17 31 31 24 38 C17 31 17 17 24 10Z"/><path d="M10 24 C17 17 31 17 38 24 C31 31 17 31 10 24Z"/><circle cx="24" cy="24" r="2.6" fill="#bd4e6c" stroke="none"/></g></svg></span>
-      <span>M</span><span>E</span><span>R</span>
-    </div>
-    <div class="grainlayer"></div>
-    <div class="tte-cap">de Alfama a Belém · todos os dias</div>
-  </section>
+  <!-- POSTER: Time to Eat -->
+  <section class="poster reveal"><img src="assets/poster-time-to-eat.jpg" alt="Time to eat — panquecas no Augusto Lisboa" loading="lazy"></section>
 
-  <!-- ABOUT (scalloped card) -->
-  <section class="about grainy" id="sobre">
-    <div class="head reveal">
-      <div class="script">a casa</div>
-      <div class="tri"><span>Grão</span><span>·</span><span>Tempo</span><span>·</span><span>Nada a mais</span></div>
-    </div>
-    <div class="photo-strip">
-      <img src="assets/pancake-maos.jpg" alt="Panquecas servidas à mesa no Augusto">
-      <div class="card reveal">
-        <div class="labs"><span>Feito na hora</span><span>Sem pressa</span></div>
-        <div class="circle"><img src="assets/latte-lifestyle.jpg" alt="Café servido no Augusto, entre plantas e azulejo"></div>
-        <p>Mesas de mármore, chão de azulejo cor-de-rosa e balcões cheios de luz. Abrimos em Alfama em 2023 e hoje há também Belém. O <b>pão de banana da casa</b> e a <b>geleia de abóbora caseira</b> ganharam vida própria — e sim, há fila. Vale cada minuto.</p>
-      </div>
-    </div>
-  </section>
+  <!-- POSTER: Matcha Mood -->
+  <section class="poster reveal" id="sobre"><img src="assets/poster-matcha-mood.jpg" alt="Matcha Mood — uma pausa, um matcha no Augusto" loading="lazy"></section>
 
-  <!-- CONTES (palavra chunky + prato) -->
-  <section class="contes">
-    <div class="cn-word"><span>Bru</span><span>nch</span></div>
-    <div class="cn-plate reveal"><img src="assets/pancake-coco.jpg" alt="Prato de panquecas do Augusto Lisboa" loading="lazy"></div>
-    <div class="cn-caps"><span>feito na hora</span><span>à mesa</span><span>sem pressa</span></div>
-    <div class="grainlayer"></div>
-  </section>
+  <!-- POSTER: Brunch (landscape) -->
+  <section class="poster wide reveal"><img src="assets/poster-brunch-poster.jpg" alt="Brunch à Augusto — as manhãs sabem melhor aqui" loading="lazy"></section>
 
   <!-- GALLERY -->
   <section class="gal-wrap grainy" id="galeria">
@@ -392,12 +357,11 @@
     </div>
   </section>
 
-  <!-- COM MIMO (prato sobre tipo gigante tonal) -->
-  <section class="conmimo grainy">
-    <h2 class="cm-word">Com<br>Mimo</h2>
-    <div class="cm-plate reveal"><img src="assets/avo-vedette.jpg" alt="Prato de avocado toast do Augusto Lisboa" loading="lazy"></div>
-    <div class="cm-caps"><span>da nossa</span><span>cozinha</span><span>para si</span></div>
-  </section>
+  <!-- POSTER: Doce Doce -->
+  <section class="poster reveal"><img src="assets/poster-doce-doce.jpg" alt="Doce doce — só mais uma dentada, Augusto Lisboa" loading="lazy"></section>
+
+  <!-- POSTER: Boa Companhia -->
+  <section class="poster reveal"><img src="assets/poster-boa-companhia.jpg" alt="Boa companhia — à mesa sabe melhor, Augusto Lisboa" loading="lazy"></section>
 
   <!-- MENU -->
   <section class="menu checker" id="menu">
@@ -421,8 +385,8 @@
     </div>
   </section>
 
-  <!-- texture band -->
-  <div class="texband"><img src="assets/tosta-cream.jpg" alt=""><div class="cap"><span class="pill">doce da casa, todos os dias</span></div></div>
+  <!-- POSTER: Pancake Club -->
+  <section class="poster reveal"><img src="assets/poster-pancake-club.jpg" alt="Pancake Club — feito com amor, Augusto Lisboa" loading="lazy"></section>
 
   <!-- VOICES -->
   <section class="voices grainy">
@@ -439,8 +403,8 @@
     </div>
   </section>
 
-  <!-- texture band -->
-  <div class="texband"><img src="assets/avo-ovo.jpg" alt=""><div class="cap"><span class="pill">brunch, de Alfama a Belém</span></div></div>
+  <!-- POSTER: Boa Conversa (landscape) -->
+  <section class="poster wide reveal"><img src="assets/poster-boa-conversa.jpg" alt="Boa conversa, um copo, sem pressa — Augusto Lisboa" loading="lazy"></section>
 
   <!-- VISIT -->
   <section class="visit" id="visitar">
