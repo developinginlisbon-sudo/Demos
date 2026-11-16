@@ -14,12 +14,20 @@ A página inicial lista todas as demos com link direto para cada uma.
 
 ```
 Demos/
-├── index.html              → Montra: lista todas as demos
+├── index.html              → Montra: hero da marca + lista de demos
+├── assets/                 → Identidade Developing in Lisbon
+│   ├── dil-logo.svg        → Logótipo oficial
+│   ├── rua-poster.jpg      → Poster da hero (Chiado)
+│   └── rua-tall.mp4        → Vídeo da hero (Chiado, Lisboa)
 ├── .nojekyll               → Faz o GitHub Pages servir HTML puro
 ├── README.md               → Este ficheiro
 └── <nome-do-estabelecimento>/
     └── index.html          → A demo (uma página, mobile-first)
 ```
+
+A montra reproduz o design da primeira página de **developinginlisbon.com**
+(logótipo, vídeo do Chiado, tipografia Archivo e o gradiente-assinatura),
+com a lista de demos por baixo, na mesma linguagem visual.
 
 Cada estabelecimento tem a **sua própria pasta**, em minúsculas e com hífens
 (ex.: `tasca-do-manel/`, `barbearia-central/`). O link público fica:

@@ -3,112 +3,214 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Developing in Lisbon — Demos</title>
-<meta name="description" content="Sites-demonstração de estabelecimentos locais em Lisboa, criados pelo estúdio Developing in Lisbon.">
+<title>Developing in Lisbon · Demos</title>
+<meta name="description" content="Demos de sites para negócios locais de Lisboa — restaurantes, cafés, barbearias e lojas. Desenhados e programados à mão pelo estúdio Developing in Lisbon.">
+<meta name="theme-color" content="#07080b">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="Developing in Lisbon · Demos">
+<meta property="og:description" content="Demos de sites para negócios locais de Lisboa, feitos à mão.">
+<meta property="og:locale" content="pt_PT">
+<link rel="icon" href="assets/dil-logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0e1116; --bg-soft:#161b22; --card:#1b2129; --line:#2a3139;
-    --ink:#f2f4f7; --muted:#9aa4b2; --accent:#f6c343; --accent-ink:#1a1205;
-    --radius:18px;
-    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  }
-  @media (prefers-color-scheme: light){
-    :root:not([data-theme="dark"]){
-      --bg:#f6f7f9; --bg-soft:#ffffff; --card:#ffffff; --line:#e6e9ee;
-      --ink:#161b22; --muted:#5a6472; --accent:#c8860a; --accent-ink:#ffffff;
-    }
+    --bg:#07080b;
+    --ink:#f9f8f8;
+    --muted:#8a877f;
+    --line:rgba(249,248,248,.12);
+    --surface:rgba(249,248,248,.035);
+    --surface-2:rgba(249,248,248,.06);
+    --grad:linear-gradient(140deg,#ebe23e 0%,#ff6e3e 55%,#4365ff 100%);
+    --sans:"Inter Tight",system-ui,-apple-system,sans-serif;
+    --disp:"Archivo","Inter Tight",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
+  html{scroll-behavior:smooth}
   body{
-    background:var(--bg); color:var(--ink); font-family:var(--font);
-    line-height:1.55; -webkit-font-smoothing:antialiased;
-    padding:0 16px; display:flex; flex-direction:column; min-height:100vh;
+    background:var(--bg); color:var(--ink); font-family:var(--sans);
+    line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
-  .wrap{width:100%; max-width:720px; margin:0 auto; flex:1 0 auto}
+  .mono{font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase}
 
-  header{padding:56px 0 28px; text-align:center}
-  .badge{
-    display:inline-block; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--accent); font-weight:700; margin-bottom:14px;
+  /* ---------- HERO ---------- */
+  .hero{position:relative; height:100svh; min-height:600px; width:100%; overflow:hidden}
+  .hero video,.hero .poster{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
   }
-  h1{font-size:30px; line-height:1.15; margin:0 0 10px; letter-spacing:-.02em}
-  .tag{color:var(--muted); font-size:16px; margin:0 auto; max-width:46ch}
-
-  .section-label{
-    font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
-    font-weight:700; margin:30px 4px 14px;
+  .hero .scrim{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(7,8,11,.55) 0%, rgba(7,8,11,0) 22%),
+      linear-gradient(0deg, rgba(7,8,11,.78) 0%, rgba(7,8,11,.08) 42%);
   }
+  .hero-inner{position:relative; z-index:2; height:100%; display:flex; flex-direction:column;
+    padding:18px 20px calc(18px + env(safe-area-inset-bottom)); }
 
-  .grid{display:grid; gap:14px}
+  .topbar{display:flex; align-items:center; gap:12px}
+  .logo{height:30px; width:auto; color:#fff; flex:none}
+  .logo svg{height:100%; width:auto; display:block}
+  .topbar .center{flex:1; text-align:center; color:#fff; opacity:.9}
+  .lang{color:#fff; display:flex; gap:7px; align-items:center; flex:none}
+  .lang b{font-weight:500}
+  .lang .off{opacity:.45}
+
+  .hero-mid{flex:1}
+  .headline{
+    font-family:var(--disp); font-weight:800; color:#fff;
+    font-size:clamp(30px,8.2vw,56px); line-height:1.04; letter-spacing:-.02em;
+    max-width:16ch; margin:0; text-shadow:0 2px 30px rgba(0,0,0,.35);
+  }
+  .headline .g{
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{margin:16px 0 22px; color:rgba(255,255,255,.82); font-size:16px; max-width:34ch}
+  .cta{
+    display:inline-flex; align-items:center; gap:10px; text-decoration:none;
+    background:#fff; color:#07080b; font-family:var(--mono); font-size:12px; letter-spacing:.1em;
+    text-transform:uppercase; padding:13px 18px; border-radius:999px; font-weight:500;
+  }
+  .cta .dot{width:7px; height:7px; border-radius:50%; background:var(--grad)}
+
+  .statusbar{display:flex; align-items:center; justify-content:space-between; margin-top:22px; color:#fff}
+  .nowplaying{display:flex; align-items:center; gap:10px}
+  .eq{display:flex; align-items:flex-end; gap:3px; height:15px}
+  .eq span{width:3px; background:#fff; border-radius:2px; animation:eq 1s ease-in-out infinite}
+  .eq span:nth-child(1){height:40%; animation-delay:-.2s}
+  .eq span:nth-child(2){height:90%; animation-delay:-.5s}
+  .eq span:nth-child(3){height:60%; animation-delay:-.1s}
+  .eq span:nth-child(4){height:100%; animation-delay:-.7s}
+  @keyframes eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+  .np-text small{display:block; opacity:.6; font-size:10px; letter-spacing:.14em}
+  .np-text b{font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.06em}
+  @media (prefers-reduced-motion:reduce){.eq span{animation:none}}
+
+  /* ---------- DEMOS ---------- */
+  .demos{max-width:760px; margin:0 auto; padding:64px 20px 0}
+  .eyebrow{color:var(--muted); margin-bottom:14px}
+  .demos h2{
+    font-family:var(--disp); font-weight:800; font-size:clamp(26px,6vw,40px);
+    letter-spacing:-.02em; margin:0 0 6px; line-height:1.05;
+  }
+  .demos .lead{color:var(--muted); font-size:16px; margin:0 0 30px; max-width:40ch}
+
+  .grid{display:grid; gap:12px}
   a.card{
-    display:block; text-decoration:none; color:inherit;
-    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-    padding:18px 18px; transition:transform .15s ease, border-color .15s ease;
+    display:block; text-decoration:none; color:inherit; position:relative;
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    padding:16px; transition:background .15s ease, border-color .15s ease, transform .15s ease;
   }
+  a.card:hover{background:var(--surface-2); border-color:rgba(255,110,62,.5)}
   a.card:active{transform:scale(.99)}
-  a.card:hover{border-color:var(--accent)}
   .card-top{display:flex; align-items:center; gap:14px}
   .thumb{
-    width:48px; height:48px; border-radius:12px; flex:none;
-    display:grid; place-items:center; font-size:22px;
-    background:var(--bg-soft); border:1px solid var(--line);
+    width:46px; height:46px; border-radius:11px; flex:none; display:grid; place-items:center;
+    font-size:21px; background:rgba(249,248,248,.06); border:1px solid var(--line);
   }
-  .card h3{margin:0; font-size:17px; letter-spacing:-.01em}
-  .card .kind{color:var(--muted); font-size:13px; margin-top:2px}
-  .arrow{margin-left:auto; color:var(--muted); font-size:20px; flex:none}
+  .card h3{margin:0; font-family:var(--disp); font-weight:700; font-size:17px; letter-spacing:-.01em}
+  .card .kind{color:var(--muted); font-size:12px; margin-top:3px; font-family:var(--mono); letter-spacing:.04em; text-transform:uppercase}
+  .arrow{margin-left:auto; color:var(--muted); font-size:22px; flex:none; line-height:1}
 
   .empty{
-    background:var(--bg-soft); border:1px dashed var(--line); border-radius:var(--radius);
-    padding:30px 22px; text-align:center; color:var(--muted);
+    border:1px dashed var(--line); border-radius:16px; padding:30px 22px; text-align:center; color:var(--muted);
+    background:var(--surface);
   }
-  .empty strong{color:var(--ink); display:block; margin-bottom:6px; font-size:16px}
+  .empty strong{color:var(--ink); display:block; margin-bottom:6px; font-family:var(--disp); font-weight:700; font-size:16px}
 
-  footer{
-    flex-shrink:0; text-align:center; color:var(--muted); font-size:13px;
-    padding:36px 0 28px; margin-top:24px; border-top:1px solid var(--line);
-  }
-  footer a{color:var(--accent); text-decoration:none}
+  /* ---------- FOOTER ---------- */
+  footer{max-width:760px; margin:0 auto; padding:56px 20px calc(40px + env(safe-area-inset-bottom)); color:var(--muted)}
+  .foot-top{height:1px; background:var(--line); margin-bottom:22px}
+  .foot-row{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap}
+  footer a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px}
+  footer a:hover{border-color:var(--ink)}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <span class="badge">Developing in Lisbon</span>
-      <h1>Demos de estabelecimentos</h1>
-      <p class="tag">Pequenos sites para restaurantes, cafés, barbearias e lojas de Lisboa. Toca num para ver.</p>
-    </header>
 
-    <main>
-      <div class="section-label">Estabelecimentos</div>
+  <!-- ====================== HERO ====================== -->
+  <section class="hero">
+    <video class="bg" autoplay muted loop playsinline poster="assets/rua-poster.jpg">
+      <source src="assets/rua-tall.mp4" type="video/mp4">
+    </video>
+    <img class="poster" src="assets/rua-poster.jpg" alt="" aria-hidden="true" style="z-index:0">
+    <div class="scrim"></div>
 
-      <!-- MONTRA: os cartões das demos entram aqui.
-           Modelo de cartão (copiar e preencher):
+    <div class="hero-inner">
+      <div class="topbar">
+        <span class="logo" aria-label="Developing in Lisbon">
+          <svg viewBox="-40 -312.51 1080 1080" fill-rule="evenodd" role="img">
+            <g fill="currentColor">
+              <path d="M106.44,448.03l-18.92,5l-14.88,1.54c-18.84,1.95-41.43-3.11-55.95-15.99c-7.7-6.83-12.79-15.5-15.24-25.48 c-3.26-13.29-0.67-27.53,4.29-40.24c3.18-8.16,6.83-15.58,11.52-23.07c10.62-16.97,23.41-32.1,38.1-45.65 c3.93-3.62,7.41-6.84,11.49-10.23c8.94-7.43,17.94-14.26,27.71-20.59l15.98-10.35c19.23-12.46,45.9-27.76,55.94-48.47 c4.52-9.33,4.46-19.97-2.23-28c-4.61-5.54-10.52-9.47-17.46-11.83c-8.19-2.79-16.55-4.24-25.23-4.76l-18.82-1.12 c-4.72-0.28-9.15-0.93-13.84-1.54c-10.96-1.42-21.2-4.36-31.31-8.87c-5.81-2.59-10.91-5.94-15.95-9.75 c-2.72-2.05-4.78-4.37-7.02-6.94c-16.8-19.18-9.68-45.79,8.68-62.2c7-6.25,14.42-11.19,22.82-15.26c4.87-2.36,9.51-4.35,14.69-5.97 c6.28-1.95,12.36-3.76,18.9-4.74c13.4-2.01,25.17-2.57,38.88-1.98c25.57,1.09,50.63,3.99,75.99,8.02 c46.55,7.4,99.06,20.09,142.15,38.93c15.16,6.63,29.24,14.26,42.89,23.5c6.96,4.71,13,9.74,19.47,15.1l16.87,17l13.27,17.18 c7.56,9.79,12.82,20.79,17.54,32.28l8.1,24.82c2.67,10.33,4.05,20.64,4.63,31.27l-0.04,15.7l-1.05,13.32 c-1.48,9.64-3.19,18.96-6.27,28.25c-6.8,20.57-15.31,35.55-29.44,51.82l-9.29,9.25l-11.97,9.66c-7.32,5.91-15.37,10.09-23.86,14.26 c-11.04,5.42-22.22,9.41-34.08,12.7l-24.15,5.21c-11.64,1.85-23.02,3.18-34.81,3.18L279.16,423l-16.65-0.83l-33.88-2.34l-5.2-0.25 l-20.56,0.07l-20.61,2.07c-8.35,0.84-16.35,2.82-24.21,5.67l-13.62,4.93l-15.45,6.65L106.44,448.03z M276.61,325.19 c10.52-4.36,25.62-12.14,33.57-19.49l4.53-4.19l4.68-4.62l4.16-5.11c17.66-23.49,19.42-51.8,10.43-79.41 c-2.28-6.99-4.95-13.39-8.54-19.83c-4.36-7.82-9.08-15.24-14.98-22l-10.54-10.56l-10.42-7.58c-2.7-1.97-5.72-3-8.86-4.04 c-15.01-5.01-31.41-0.9-36.85,13.78c-2.02,5.45-2.87,10.86-2.78,16.7c0.2,12.28-1.05,29.13-6.18,39.74l-7.38,15.24l-6.52,10.01 c-7.16,10.99-16.42,20.02-25.57,29.36l-4.37,4.46L176.61,292l-7.1,8.38c-3.83,4.52-6.65,9.66-8.25,15.4 c-1.97,7.03-0.14,14.37,5.52,19c2.38,1.95,5.19,3.21,8.07,4.3c6.89,2.6,13.9,3.15,21.34,3.06 C223.03,341.79,251.87,335.44,276.61,325.19z"/>
+              <path d="M973.16,280.02c18.47,14.43,27.79,36.23,26.77,59.38c-0.5,11.26-3.21,21.46-7.87,31.72c-5.02,11.05-12.2,20.49-20.97,28.9 c-14.42,13.84-34.04,23.79-53.11,29.7c-9.62,2.98-18.8,5.26-28.81,6.79c-17.39,2.65-34.55,4.01-52.17,3.49 c-45.29-1.33-95.65-10.48-138.51-24.92l-24.83-9.69l-10.78-5.18l-13.79-7.87l-14.67-11.07l-6.48-6.43 c-5.96-6.97-11.18-14.31-14.51-22.97c-7.52-19.56-6.3-37.78-0.28-57.68l13.24-37.08l6.43-17.89c7.77-21.62,14.24-47.76,14.8-70.68 c0.24-10.05-0.68-19.59-3.34-29.23l-6.82-18.36c-2.74-7.37-4.66-14.99-4.39-22.89c0.33-9.64,2.69-18.52,6.97-27.03 c8.17-16.26,21.52-30.6,36.87-40.35c6.96-4.42,13.89-8.36,21.72-11.15c8.31-2.96,16.55-5.1,25.32-6.07l15.69-0.45 c10.81,0.28,21.31,2.56,31.17,6.95c9.18,4.09,16.99,10.36,22.5,18.65c2.49,3.74,4.13,7.71,5.56,11.97 c5.9,17.62,2.89,35.98-5.33,52.49l-9.33,15.41l-18.61,23.5l-14.7,17.26l-15.32,19.14l-11.37,16.44l-8.65,15.03 c-5.76,10.01-12.53,30.5-13.08,42.03l-0.59,12.38c0.16,10.16,2.65,19.61,6.87,28.8c2.89,6.3,6.98,11.56,11.56,16.72l2.62,2.54 c5.09,4.95,10.44,9.11,16.56,12.77c17.41,10.4,41.21,18.03,61.34,17.2l5.72-0.24c11.06-0.46,21.66-3.65,31.41-8.79 c6.65-3.5,12.35-8.04,17.18-13.67c4.43-5.17,7.26-10.96,10.46-16.89l7.61-14.06c18.58-27.44,58.44-30.78,86.88-16.95 C964.84,274.03,968.89,276.68,973.16,280.02z"/>
+              <path d="M613.29,444.09c-18.76,6.89-50.29,10.29-70.39,10.29l-28.59,0c-13.85,0-37.17-3.07-49.95-8.1 c-5.02-1.97-9.51-4.58-13.83-7.76c-11.67-8.59-14.61-22.37-8.69-35.67c2.03-4.55,4.41-9.05,7.97-12.59l11.34-11.31 c10.72-9.21,20.4-19.1,28.15-30.98c6.95-10.66,12.21-21.64,16.42-33.55l4.64-16.03c4.14-17.78,5.05-35.71,2.46-53.81 c-1.25-8.72-3.04-16.75-5.94-24.99c-8.4-23.86-20.49-40.48-37.24-58.97l-6.07-7.88c-7.28-9.45-7.8-21.27,1.56-29.13 c10.35-8.7,29.28-11.71,42.85-11.7l18.55,0.01c12.22,0.01,23.9,1.74,35.8,4.25c16,3.37,32.11,10.18,43.36,22.1 c7.21,7.64,11.16,17.38,11.71,27.89c0.78,14.9-5.23,29.18-11.36,42.7l-8.69,19.16l-9.33,22.57c-8.6,20.81-15.28,51.46-13.85,74.01 c0.39,15.4,4.52,30.19,13.23,42.93c3.64,5.33,7.89,9.83,12.68,14.08l18.4,13.49l8.63,6.83l2.09,2.06 c7.96,7.85,9.36,22.14-0.69,31.24C624.12,439.21,618.9,442.03,613.29,444.09z"/>
+              <path d="M480.53,94.98l-17.51-0.87c-10.68-0.53-21.09-2.13-31.33-5.14C417.82,84.9,403.51,77,401.43,62.02 c-1.37-9.81,4.99-21.37,12.08-27.6l3.32-2.92c10.26-9.02,29.27-17.64,42.59-21.16l15.48-4.09c10.83-2.86,21.69-4.56,32.89-5.17 l16.69-0.91L532.03,0l7.93,0.27c14.85,0.5,29.21,2.67,43.23,7.67c8.23,2.94,15.52,7.3,22.21,12.71l3.5,3.29 c13.19,13.82,17,33.93,4.71,48.94l-3.64,3.61c-8.87,8.78-26.78,13.57-39.57,15.5c-12.08,1.82-23.82,2.93-36.18,2.94L480.53,94.98z"/>
+            </g>
+          </svg>
+        </span>
+        <span class="center mono">Demos ↓</span>
+        <span class="lang mono"><b>PT</b><span class="off">/ EN</span></span>
+      </div>
 
-      <a class="card" href="nome-do-estabelecimento/">
-        <div class="card-top">
-          <div class="thumb">🍽️</div>
-          <div>
-            <h3>Nome do Estabelecimento</h3>
-            <div class="kind">Restaurante · Zona</div>
+      <div class="hero-mid"></div>
+
+      <div class="hero-foot">
+        <h1 class="headline">Demos de sites, <span class="g">feitos à mão</span> em Lisboa.</h1>
+        <p class="hero-sub">Páginas para restaurantes, cafés, barbearias e lojas do bairro. Toca para ver cada uma.</p>
+        <a class="cta" href="#demos"><span class="dot"></span>Ver os estabelecimentos</a>
+
+        <div class="statusbar">
+          <div class="nowplaying">
+            <span class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+            <span class="np-text"><small class="mono">A TOCAR AGORA</small><b>Chiado, Lisboa</b></span>
           </div>
-          <div class="arrow">›</div>
-        </div>
-      </a>
-      -->
-
-      <div class="grid" id="demos">
-        <div class="empty">
-          <strong>Ainda sem demos publicadas</strong>
-          A primeira aparece aqui assim que estiver pronta.
+          <span class="mono" style="opacity:.6">Developing in Lisbon</span>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </section>
+
+  <!-- ====================== DEMOS ====================== -->
+  <section class="demos" id="demos">
+    <div class="eyebrow mono">Estabelecimentos</div>
+    <h2>As demos</h2>
+    <p class="lead">Cada estabelecimento tem a sua página, pensada primeiro para o telemóvel.</p>
+
+    <!-- MONTRA: os cartões das demos entram aqui.
+         Modelo de cartão (copiar e preencher):
+
+    <a class="card" href="nome-do-estabelecimento/">
+      <div class="card-top">
+        <div class="thumb">🍽️</div>
+        <div>
+          <h3>Nome do Estabelecimento</h3>
+          <div class="kind">Restaurante · Zona</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+    </a>
+    -->
+
+    <div class="grid" id="demo-list">
+      <div class="empty">
+        <strong>Ainda sem demos publicadas</strong>
+        A primeira aparece aqui assim que estiver pronta.
+      </div>
+    </div>
+  </section>
 
   <footer>
-    Feito pelo estúdio <strong>Developing in Lisbon</strong> · Lisboa<br>
-    <a href="https://github.com/developinginlisbon-sudo/Demos">Repositório no GitHub</a>
+    <div class="foot-top"></div>
+    <div class="foot-row">
+      <span class="mono">Estúdio · Lisboa</span>
+      <a href="https://developinginlisbon.com">developinginlisbon.com</a>
+    </div>
   </footer>
+
+<style>
+  .hero-foot{padding-bottom:4px}
+</style>
 </body>
 </html>
