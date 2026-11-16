@@ -112,6 +112,23 @@
   .split .sub{font-family:var(--disp); font-style:italic; font-weight:300; font-size:18px; color:#e9ddd0; max-width:34ch}
   .split .row{display:flex; align-items:center; gap:14px; flex-wrap:wrap; color:var(--cream)}
 
+  /* ============ HORA DE COMER (letras espalhadas sobre foto — Time to Eat) ============ */
+  .tte{position:relative; min-height:92svh; overflow:hidden; display:grid; place-items:center; padding:72px 16px;
+    background:#241318 url("assets/hero-poster.jpg") center/cover no-repeat}
+  .tte .veil{position:absolute; inset:0; z-index:1; background:linear-gradient(rgba(28,12,16,.34), rgba(28,12,16,.55))}
+  .tte .grainlayer{position:absolute; inset:0; z-index:3; pointer-events:none; opacity:.15; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E"); background-size:170px}
+  .tte-letters{position:relative; z-index:2; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px 10px; max-width:600px}
+  .tte-letters .brk{flex-basis:100%; height:0; margin:0; padding:0}
+  .tte-letters span:not(.brk){font-family:var(--anton); text-transform:uppercase; font-size:clamp(48px,16vw,104px); line-height:.78; color:var(--ink);
+    background:var(--cream); padding:4px 16px 8px; border-radius:7px; box-shadow:0 12px 26px rgba(0,0,0,.4); display:inline-block}
+  .tte-letters span:nth-child(3n){transform:rotate(4deg) translateY(-7px)}
+  .tte-letters span:nth-child(3n+1){transform:rotate(-5deg) translateY(5px)}
+  .tte-letters span:nth-child(3n+2){transform:rotate(2deg)}
+  .tte-letters .emblem{background:var(--cream); border-radius:50%; width:clamp(58px,17vw,112px); height:clamp(58px,17vw,112px); padding:0; display:grid; place-items:center; transform:rotate(0)!important}
+  .tte-letters .emblem svg{width:62%; height:62%}
+  .tte-cap{position:absolute; z-index:3; bottom:34px; left:0; right:0; text-align:center; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--cream)}
+
   /* ============ ABOUT (scalloped card over photo — Grainhaus) ============ */
   .about{position:relative; color:#fff; overflow:hidden;
     background:radial-gradient(90% 70% at 50% 0%, #cb5c7a, var(--rose-deep) 62%, #a53f5c 100%)}
@@ -297,6 +314,20 @@
         <span class="paren">(e ficar a manhã toda)</span>
       </div>
     </div>
+  </section>
+
+  <!-- HORA DE COMER (letras espalhadas sobre foto) -->
+  <section class="tte">
+    <div class="veil"></div>
+    <div class="tte-letters reveal">
+      <span>H</span><span>O</span><span>R</span><span>A</span><span class="brk"></span>
+      <span>D</span><span>E</span><span class="brk"></span>
+      <span>C</span><span>O</span>
+      <span class="emblem"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="#bd4e6c" stroke-width="2"><path d="M24 8 C32 16 32 32 24 40 C16 32 16 16 24 8Z"/><path d="M8 24 C16 16 32 16 40 24 C32 32 16 32 8 24Z"/><circle cx="24" cy="24" r="3" fill="#bd4e6c" stroke="none"/></g></svg></span>
+      <span>M</span><span>E</span><span>R</span>
+    </div>
+    <div class="grainlayer"></div>
+    <div class="tte-cap">de Alfama a Belém · todos os dias</div>
   </section>
 
   <!-- ABOUT (scalloped card) -->
