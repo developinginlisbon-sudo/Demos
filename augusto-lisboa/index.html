@@ -264,6 +264,45 @@
     background:rgba(214,180,106,.78); border:1px dashed rgba(42,28,26,.22); border-radius:2px}
   .tte2-cap{position:relative; z-index:2; margin:58px 0 0; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft)}
 
+  /* ============ DOCE, DOCE (janela em arco, polaroid e selo a rodar) ============ */
+  .doce{background:#f3dfbf; color:#970d08; padding:84px 22px; overflow:hidden}
+  .doce-in{max-width:var(--maxw); margin:0 auto; display:grid; gap:56px; align-items:center}
+  @media(min-width:860px){.doce-in{grid-template-columns:1.05fr 1fr; gap:72px}}
+  .doce-pics{position:relative; width:100%; max-width:440px; margin:0 auto; padding:0 22px 44px 0}
+  .doce-arch{aspect-ratio:4/5; border-radius:999px 999px 14px 14px; overflow:hidden; border:2px solid #970d08; box-shadow:12px 12px 0 #970d08}
+  .doce-arch img{width:100%; height:100%; object-fit:cover}
+  .doce-pol{position:absolute; right:-4px; bottom:0; width:46%; margin:0; background:#fff; padding:7px 7px 26px; rotate:5deg; box-shadow:0 18px 34px rgba(60,20,10,.28)}
+  .doce-pol img{width:100%; aspect-ratio:1; object-fit:cover}
+  .doce-pol figcaption{margin-top:6px; text-align:center; font-family:var(--hand); font-size:16px; line-height:1; color:var(--ink)}
+  .doce-seal{position:absolute; left:-16px; top:16%; width:112px; height:112px; animation:spin 24s linear infinite}
+  .doce-seal circle{fill:#970d08}
+  .doce-seal text{fill:#f3dfbf; font-family:var(--hand); font-size:15.5px; letter-spacing:.06em}
+  .doce-seal .c{text-anchor:middle; font-size:22px}
+  @keyframes spin{to{rotate:360deg}}
+  .doce-tx .script{font-size:clamp(26px,7vw,38px); color:var(--ink)}
+  .doce-tx h2{font-family:var(--anton); text-transform:uppercase; font-size:clamp(72px,20vw,150px); line-height:.86; margin:8px 0 26px}
+  .doce-list{list-style:none; margin:0; padding:0; max-width:440px}
+  .doce-list li{padding:14px 0; border-top:1.5px dashed rgba(151,13,8,.35)}
+  .doce-list b{display:block; font-family:var(--disp); font-weight:500; font-size:21px; color:var(--ink)}
+  .doce-list span{display:block; margin-top:2px; font-size:14.5px; color:var(--ink-soft)}
+
+  /* ============ BOA COMPANHIA (foto inteira + menu de brunch em cápsulas) ============ */
+  .boa{display:grid; background:#730b13; color:#f4deb4}
+  @media(min-width:860px){.boa{grid-template-columns:1fr 1fr; min-height:88svh}}
+  .boa-ph{position:relative; min-height:64svh; overflow:hidden}
+  .boa-ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+  .boa-ph::after{content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(115,11,19,.6), transparent 42%)}
+  @media(min-width:860px){.boa-ph::after{background:linear-gradient(270deg, rgba(115,11,19,.65), transparent 38%)}}
+  .boa-tx{padding:52px 26px 64px; display:flex; flex-direction:column; justify-content:center; gap:16px}
+  @media(min-width:860px){.boa-tx{padding:70px 7vw}}
+  .boa-tx .script{font-size:clamp(26px,7vw,38px)}
+  .boa-tx h2{font-family:var(--anton); text-transform:uppercase; color:#ff451b; font-size:clamp(64px,17vw,132px); line-height:.86}
+  .boa-tx p{margin:4px 0 0; max-width:34ch; font-family:var(--disp); font-style:italic; font-weight:300; font-size:18px}
+  .boa-combo{display:flex; flex-wrap:wrap; gap:12px 10px; max-width:430px}
+  .boa-combo .pill{--p-bg:#f4deb4; --p-line:#3a0509; --p-ink:#730b13; font-size:20px}
+  .boa-cta{align-self:flex-start; margin-top:12px; font-size:21px; padding:8px 24px 10px; --p-bg:#ff451b; --p-line:#3a0509; --p-ink:#fff8ee; --p-sh:#3a0509}
+  .boa-cta:hover{--p-bg:#e83a12}
+
   /* ============ HORA DE COMER (letras espalhadas sobre foto — Time to Eat) ============ */
   .tte{position:relative; min-height:92svh; overflow:hidden; display:grid; place-items:center; padding:72px 16px;
     background:#241318 url("assets/hero-poster.jpg") center/cover no-repeat}
@@ -490,6 +529,7 @@
     .wipe{clip-path:none}
     .hero-top,.hero-word,.hero-bottom,.hero-bg video{animation:none; opacity:1}
     .marquee .track,.grain{animation:none}
+    .doce-seal{animation:none}
     .cl-track{animation:none; width:auto; overflow-x:auto; padding:0 24px}
   }
 </style>
@@ -560,7 +600,7 @@
     <div class="hl-row">
       <a class="hl" href="#galeria"><span class="ring"><img src="assets/ic-brunch.jpg" alt="" width="150" height="150"></span><span>Brunch</span></a>
       <a class="hl" href="#galeria"><span class="ring"><img src="assets/ic-toasts.jpg" alt="" width="150" height="150"></span><span>Tostas</span></a>
-      <a class="hl" href="#banana"><span class="ring"><img src="assets/ic-treats.jpg" alt="" width="150" height="150"></span><span>Doces</span></a>
+      <a class="hl" href="#doces"><span class="ring"><img src="assets/ic-treats.jpg" alt="" width="150" height="150"></span><span>Doces</span></a>
       <a class="hl" href="#cafe"><span class="ring"><img src="assets/ic-coffee.jpg" alt="" width="150" height="150"></span><span>Café</span></a>
       <a class="hl" href="#cafe"><span class="ring"><img src="assets/ic-drinks.jpg" alt="" width="150" height="150"></span><span>Bebidas</span></a>
       <a class="hl" href="#espaco"><span class="ring"><img src="assets/ic-discover.jpg" alt="" width="150" height="150"></span><span>O espaço</span></a>
@@ -669,20 +709,26 @@
     </div>
   </section>
 
-  <!-- POSTER: Doce Doce -->
-  <section class="story story-doce"  aria-label="DOCE DOCE">
- <div class="story-stage">
- <div class="story-brand build-piece"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></div>
-
- <h2 class="story-type"><span class="build-word word-0" style="--i:0">DOCE</span><span class="build-word word-1" style="--i:1">DOCE</span></h2>
- <svg class="story-cutout build-piece" viewBox="0 0 1122 1402" role="img" aria-label="Prato de brunch Augusto Lisboa">
- <defs><clipPath id="cut-doce"><path d="M 547,419 C 593.8,419.3 633.5,429.2 674,444 C 714.5,458.8 756.8,480.0 790,508 C 823.2,536.0 853.7,573.2 873,612 C 892.3,650.8 902.7,698.5 906,741 C 909.3,783.5 904.2,828.5 893,867 C 881.8,905.5 864.7,941.3 839,972 C 813.3,1002.7 778.2,1031.8 739,1051 C 699.8,1070.2 649.7,1082.8 604,1087 C 558.3,1091.2 508.8,1086.7 465,1076 C 421.2,1065.3 379.0,1045.3 341,1023 C 303.0,1000.7 264.0,973.3 237,942 C 210.0,910.7 191.2,872.7 179,835 C 166.8,797.3 161.3,754.8 164,716 C 166.7,677.2 177.2,637.3 195,602 C 212.8,566.7 238.0,530.7 271,504 C 304.0,477.3 347.0,456.2 393,442 C 439.0,427.8 500.2,418.7 547,419 Z M0,402 C60,436 125,447 172,490 Q213,524 223,551 L202,617 C162,701 155,816 190,876 C141,848 115,799 100,722 Q39,704 0,681 Z M1122,403 C1060,451 982,453 922,493 Q865,513 843,555 C891,611 924,714 915,817 Q956,768 971,720 C1040,704 1081,687 1122,660 Z"/></clipPath></defs>
- <image href="assets/poster-doce-doce.jpg" width="1122" height="1402" preserveAspectRatio="none" clip-path="url(#cut-doce)"/>
- </svg>
- <p class="story-caption build-piece">SÓ MAIS UMA DENTADA.</p>
- </div>
- <div class="story-margin" aria-hidden="true">AUGUSTO LISBOA <span>BRUNCH DE BAIRRO</span></div>
- </section>
+  <!-- DOCE, DOCE (editorial: janela em arco + polaroid + selo) -->
+  <section class="doce" id="doces" aria-label="Doces da casa">
+    <div class="doce-in">
+      <div class="doce-pics reveal">
+        <div class="doce-arch"><img src="assets/doce-mesa.jpg" alt="Mesa vista de cima com panquecas, taça de banana e latte" loading="lazy" width="1080" height="1350"></div>
+        <figure class="doce-pol"><img src="assets/tosta-cream.jpg" alt="Tostas com doce de abóbora e queijo creme" loading="lazy"><figcaption>com doce de abóbora</figcaption></figure>
+        <svg class="doce-seal" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="sealPath" d="M60 60 m-43 0 a43 43 0 1 1 86 0 a43 43 0 1 1 -86 0"/></defs><circle cx="60" cy="60" r="58"/><text><textPath href="#sealPath">feito em casa · todos os dias · </textPath></text><text class="c" x="60" y="68">♥</text></svg>
+      </div>
+      <div class="doce-tx reveal">
+        <span class="script">só mais uma dentada</span>
+        <h2 class="wipe">Doce,<br>doce.</h2>
+        <ul class="doce-list">
+          <li><b>Guilty Pleasure</b><span>Torre de panquecas caseiras com gelado de pastel de nata.</span></li>
+          <li><b>Tiramisù em panqueca</b><span>Recheio de cheesecake e caramelo salgado com o nosso café.</span></li>
+          <li><b>French toast</b><span>Sourdough torrado, caramelo e chantilly caseiro.</span></li>
+          <li><b>Banana bread</b><span>O best-seller, com a receita secreta no postal.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- BANANA BREAD (o best-seller) -->
   <section class="banana grainy" id="banana" aria-label="Banana bread">
@@ -700,20 +746,19 @@
     </div>
   </section>
 
-  <!-- POSTER: Boa Companhia -->
-  <section class="story story-boa"  aria-label="BOA COMPANHIA">
- <div class="story-stage">
- <div class="story-brand build-piece"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></div>
-
- <h2 class="story-type"><span class="build-word word-0" style="--i:0">BOA</span><span class="build-word word-1" style="--i:1">COMPANHIA</span></h2>
- <svg class="story-cutout build-piece" viewBox="0 0 1122 1402" role="img" aria-label="Prato de brunch Augusto Lisboa">
- <defs><clipPath id="cut-boa"><path d="M 304,568 C 341.3,564.3 379.3,566.0 420,576 C 460.7,586.0 507.8,604.7 548,628 C 588.2,651.3 627.7,683.5 661,716 C 694.3,748.5 725.0,788.0 748,823 C 771.0,858.0 791.3,897.8 799,926 C 806.7,954.2 805.2,969.5 794,992 C 782.8,1014.5 759.2,1043.7 732,1061 C 704.8,1078.3 666.5,1091.2 631,1096 C 595.5,1100.8 558.3,1097.5 519,1090 C 479.7,1082.5 436.3,1068.7 395,1051 C 353.7,1033.3 307.2,1009.0 271,984 C 234.8,959.0 204.0,930.7 178,901 C 152.0,871.3 128.3,835.3 115,806 C 101.7,776.7 95.8,750.5 98,725 C 100.2,699.5 111.7,674.2 128,653 C 144.3,631.8 166.7,612.2 196,598 C 225.3,583.8 266.7,571.7 304,568 Z M 655,395 C 686.8,393.8 745.7,392.5 788,399 C 830.3,405.5 872.0,419.2 909,434 C 946.0,448.8 985.7,468.7 1010,488 C 1034.3,507.3 1049.5,530.3 1055,550 C 1060.5,569.7 1053.5,591.0 1043,606 C 1032.5,621.0 1015.7,630.8 992,640 C 968.3,649.2 933.7,657.5 901,661 C 868.3,664.5 832.3,665.7 796,661 C 759.7,656.3 718.7,645.8 683,633 C 647.3,620.2 609.7,602.0 582,584 C 554.3,566.0 530.5,543.3 517,525 C 503.5,506.7 497.2,489.8 501,474 C 504.8,458.2 524.0,441.3 540,430 C 556.0,418.7 577.8,411.8 597,406 C 616.2,400.2 623.2,396.2 655,395 Z M0,294 C60,332 101,412 159,454 C248,476 337,514 407,552 L458,568 L304,568 Q224,573 181,605 C111,574 51,554 0,532 Z M702,660 Q807,677 869,665 C849,701 804,715 763,718 Z M688,405 Q711,384 727,369 Q745,346 751,366 L758,401 Z"/></clipPath></defs>
- <image href="assets/poster-boa-companhia.jpg" width="1122" height="1402" preserveAspectRatio="none" clip-path="url(#cut-boa)"/>
- </svg>
- <p class="story-caption build-piece">À MESA, SABE MELHOR.</p>
- </div>
- <div class="story-margin" aria-hidden="true">AUGUSTO LISBOA <span>BRUNCH DE BAIRRO</span></div>
- </section>
+  <!-- BOA COMPANHIA (dividida: foto inteira + o menu de brunch em cápsulas) -->
+  <section class="boa" aria-label="Boa companhia">
+    <div class="boa-ph"><img src="assets/boa-mesa.jpg" alt="Amigas à mesa com panquecas, tostas e saladas" loading="lazy" width="1080" height="1350"></div>
+    <div class="boa-tx reveal">
+      <span class="script">à mesa, sabe melhor</span>
+      <h2 class="wipe">Boa<br>companhia</h2>
+      <p>Podes ter tudo connosco. O nosso menu de brunch junta num só pedido:</p>
+      <div class="boa-combo">
+        <span class="pill">1 · um café</span><span class="pill">2 · uma bebida</span><span class="pill">3 · uma tosta</span><span class="pill">4 · um doce</span>
+      </div>
+      <a class="pill pill-fill boa-cta" href="menu.html">Ver o menu de brunch</a>
+    </div>
+  </section>
 
   <!-- CLIENTES -->
   <section class="clientes" id="clientes" aria-label="Clientes">
