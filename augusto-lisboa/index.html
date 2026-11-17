@@ -410,8 +410,9 @@
   .voices .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
   .voices .head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:30px}
   .voices h2{font-family:var(--anton); font-size:clamp(34px,9vw,64px); text-transform:uppercase; line-height:.9; color:#fff}
-  .voices .score{font-family:var(--anton); font-size:clamp(48px,13vw,74px); color:var(--blush); line-height:.8}
-  .voices .score small{display:block; font-family:var(--sans); font-size:11px; letter-spacing:.14em; color:rgba(247,217,223,.8); text-transform:uppercase; margin-top:6px}
+  .voices .score{font-family:var(--anton); font-size:clamp(48px,13vw,74px); color:var(--blush); line-height:1}
+  .voices .score>.count{display:block; line-height:1; padding-top:.04em}
+  .voices .score small{display:block; font-family:var(--sans); font-size:11px; line-height:1.4; letter-spacing:.14em; color:rgba(247,217,223,.8); text-transform:uppercase; margin-top:10px}
   .v-grid{display:grid; gap:16px}
   @media(min-width:760px){.v-grid{grid-template-columns:repeat(3,1fr)}}
   .voice{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.2); border-radius:12px; padding:26px 22px}
