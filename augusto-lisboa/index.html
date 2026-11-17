@@ -11,7 +11,7 @@
 <meta property="og:locale" content="pt_PT">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo+Black&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Jost:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo+Black&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Jost:wght@300;400;500;600&family=Parisienne&family=Caveat+Brush&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#f6ede0; --cream2:#efe2cf; --blush:#f7d9df; --blush-soft:#fbeef1; --blush-chk:#f1c0cc;
@@ -20,7 +20,7 @@
     --line:rgba(42,28,26,.16);
     /* paleta real da marca (destaques do Instagram) */
     --pink:#f6c8cc; --sage:#56705a; --sage-deep:#3d5443; --mustard:#d6b46a;
-    --anton:"Anton",Impact,sans-serif; --disp:"Fraunces",Georgia,serif; --script:"Parisienne",cursive; --sans:"Jost",system-ui,sans-serif;
+    --anton:"Anton",Impact,sans-serif; --disp:"Fraunces",Georgia,serif; --script:"Parisienne",cursive; --sans:"Jost",system-ui,sans-serif; --hand:"Caveat Brush","Segoe Print",cursive;
     --maxw:1120px;
   }
   @view-transition{navigation:auto}
@@ -57,16 +57,26 @@
   .texband .cap{position:absolute; inset:0; display:grid; place-content:center}
   .texband .cap .pill{background:rgba(246,237,224,.92); color:var(--ink); border:1px solid transparent; backdrop-filter:blur(2px)}
 
-  /* pills */
-  .pill{display:inline-flex; align-items:center; gap:8px; border-radius:999px; padding:9px 16px;
-    font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap; transition:all .3s}
-  .pill-outline{border:1.5px solid var(--ink); color:var(--ink)}
-  .pill-outline:hover{background:var(--ink); color:var(--cream)}
-  .pill-fill{background:var(--sage-deep); color:#fff; border:1.5px solid var(--ink); box-shadow:3px 3px 0 var(--ink)}
-  .pill-fill:hover{background:#2f4234; transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink)}
-  .pill-ghost{border:1.5px solid rgba(255,248,238,.9); color:#fff8ee; background:rgba(255,248,238,.1); backdrop-filter:blur(6px)}
-  .pill-ghost:hover{background:#fff8ee; color:var(--ink)}
-  .pill-fill:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink)}
+  /* cápsulas feitas à mão: contorno tremido (filtro #rough-edge), papel com grão, letra manuscrita, ligeiramente tortas */
+  .pill{--p-bg:#fff8ee; --p-line:var(--ink); --p-ink:var(--ink); --p-sh:transparent; --p-rot:-1.2deg;
+    position:relative; isolation:isolate; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:7px 20px 9px;
+    font-family:var(--hand); font-size:19px; font-weight:400; line-height:1.1; letter-spacing:.01em; text-transform:none; white-space:nowrap;
+    color:var(--p-ink); background:none; border:0; rotate:var(--p-rot);
+    transition:rotate .35s cubic-bezier(.2,.7,.2,1), translate .25s ease, color .25s}
+  .pill::before,.pill::after{content:""; position:absolute; inset:0; border-radius:38px 30px 36px 28px / 24px 30px 22px 30px; pointer-events:none}
+  .pill::before{z-index:-2; background:var(--p-bg); border:2px solid var(--p-line); box-shadow:3px 3px 0 var(--p-sh); filter:url(#rough-edge);
+    transition:background .25s}
+  .pill::after{z-index:-1; inset:3px; opacity:.5; mix-blend-mode:overlay; background-size:130px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='130'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E")}
+  .pill:nth-of-type(2n){--p-rot:1deg}
+  a.pill:hover,button.pill:hover{rotate:0deg; translate:0 -2px}
+  a.pill:active{translate:1px 2px}
+  .pill-outline{--p-bg:#fff8ee}
+  .pill-outline:hover{--p-bg:var(--pink)}
+  .pill-fill{--p-bg:var(--sage-deep); --p-line:#1f2c22; --p-ink:#fff8ee; --p-sh:var(--ink)}
+  .pill-fill:hover{--p-bg:#2f4234}
+  .pill-ghost{--p-bg:rgba(255,248,238,.16); --p-line:#fff8ee; --p-ink:#fff8ee}
+  .pill-ghost:hover{--p-bg:#fff8ee; --p-ink:var(--ink)}
   .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor; flex:none}
   .reg{font-size:.5em; vertical-align:super; font-family:var(--sans); font-weight:500; opacity:.8}
   .paren{font-variant:small-caps; letter-spacing:.1em; color:var(--ink-soft); font-size:12px}
@@ -95,7 +105,6 @@
   .badge-band .mid{font-family:var(--script); font-size:clamp(34px,10vw,60px); color:var(--ink); line-height:.9; position:relative}
   .badge-band .mid::after{content:""; display:block; height:5px; width:60%; margin:6px auto 0; background:var(--rose-deep); border-radius:3px}
   /* ---- pílula de estado "aberto" (Le Petit Bleu) ---- */
-  .status{border:1px solid var(--ink); color:var(--ink); background:rgba(246,237,224,.55)}
   .dot-live{width:8px; height:8px; border-radius:50%; background:#5a8a4a; animation:pulse 1.9s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(90,138,74,.55)}70%{box-shadow:0 0 0 9px rgba(90,138,74,0)}100%{box-shadow:0 0 0 0 rgba(90,138,74,0)}}
   /* ---- barra CTA full-width (Monte) ---- */
@@ -114,6 +123,13 @@
     padding:122px 20px 34px; background:#3a2a24; color:#fff8ee}
   .hero-bg{position:absolute; inset:0; z-index:-1; overflow:hidden}
   .hero-bg video{width:100%; height:100%; object-fit:cover; object-position:50% 50%; animation:heroZoom 2.6s cubic-bezier(.2,.7,.2,1) both}
+  .hero-bg .blur{display:none}
+  /* ecrãs horizontais: o vídeo (vertical) fica nítido à altura do ecrã; o mesmo vídeo desfocado enche os lados */
+  @media (min-aspect-ratio:4/5){
+    .hero-bg .blur{display:block; position:absolute; inset:-8%; width:116%; height:116%; object-fit:cover; filter:blur(36px) saturate(1.2) brightness(.78); animation:none}
+    .hero-bg #heroBg{position:absolute; top:0; left:50%; width:auto; height:100%; aspect-ratio:9/16; translate:-50% 0;
+      box-shadow:0 0 90px rgba(20,10,8,.55)}
+  }
   .hero>.vid-ctrl{bottom:22px; right:20px; width:40px; height:40px}
   .hero-bg::after{content:""; position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(36,22,18,.55) 0%, rgba(36,22,18,.18) 30%, rgba(36,22,18,.22) 58%, rgba(36,22,18,.72) 100%)}
@@ -129,8 +145,8 @@
   .hero-bottom{position:relative; z-index:4; margin-top:22px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center}
   .hero-tag{font-size:clamp(34px,10vw,56px); line-height:.9; color:#fff8ee; text-shadow:0 4px 24px rgba(0,0,0,.4)}
   .hero-ctas{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
-  .hero-ctas .pill{font-size:11.5px; padding:12px 20px}
-  .hero .status{color:#fff8ee; border-color:rgba(255,248,238,.6); background:rgba(36,22,18,.35); backdrop-filter:blur(6px)}
+  .hero-ctas .pill{font-size:21px; padding:8px 24px 10px}
+  .hero .status{--p-bg:rgba(36,22,18,.5); --p-line:rgba(255,248,238,.8); --p-ink:#fff8ee; --p-rot:.8deg; font-size:18px}
   .status.closed .dot-live{background:#c9a27a; animation:none}
   /* desktop: tudo cabe no primeiro ecrã, mesmo em portáteis baixos */
   @media(min-width:760px){
@@ -182,8 +198,8 @@
   .cafe-grid figcaption small{display:block; font-family:var(--sans); font-size:12.5px; color:var(--ink-soft); margin-top:3px}
   .partners{max-width:var(--maxw); margin:40px auto 0; padding:0 24px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center}
   .partners .lab{flex-basis:100%; text-align:center; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px}
-  .partners .pill{border:1.5px solid var(--ink); background:#fff8ee; letter-spacing:.08em; text-transform:none; font-size:13px}
-  .partners .pill b{font-weight:600; color:var(--sage-deep)}
+  .partners .pill{--p-bg:var(--kraft); font-size:18px}
+  .partners .pill b{font-weight:400; color:var(--sage-deep)}
 
   /* ============ BANANA BREAD (mostarda da marca) ============ */
   .banana{background:var(--mustard); color:var(--ink); padding:70px 24px; overflow:hidden}
@@ -482,6 +498,7 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <filter id="rough-edge" x="-4%" y="-30%" width="108%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.5" xChannelSelector="R" yChannelSelector="G"/></filter>
     <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="7"/></filter>
     <pattern id="az" width="74" height="74" patternUnits="userSpaceOnUse">
       <g fill="none" stroke="#d96e8a" stroke-width="1.15">
@@ -510,7 +527,8 @@
   <!-- HERO -->
   <header class="hero" id="top">
     <div class="hero-bg" aria-hidden="true">
-      <video id="heroBg" muted loop playsinline preload="auto" poster="assets/hero-poster-v2.jpg" data-src="assets/hero-v2.mp4"></video>
+      <video class="blur" id="heroBlur" muted loop playsinline preload="none" poster="assets/hero-poster-v2.jpg" data-src="assets/hero-v3.mp4"></video>
+      <video id="heroBg" muted loop playsinline preload="auto" poster="assets/hero-poster-v2.jpg" data-src="assets/hero-v3.mp4"></video>
     </div>
     <div class="hero-top">
       <div class="micro">Alfama<br>&amp; Belém</div>
@@ -725,7 +743,7 @@
     <div class="frame reveal" style="text-align:center">
       <div class="bigword"><span class="script">o nosso</span><h2 class="wipe">Menu</h2></div>
       <p class="menu-note" style="font-size:15px;color:var(--ink-soft);max-width:40ch;margin:10px auto 26px">Brunch, tostas, doces e café de especialidade. Tudo preparado na hora, em Alfama e Belém.</p>
-      <a class="pill pill-fill" href="menu.html" style="font-size:12px;padding:14px 26px">Ver menu completo<span class="arr" style="font-style:normal;margin-left:2px">→</span></a>
+      <a class="pill pill-fill" href="menu.html" style="font-size:21px;padding:9px 26px 11px">Ver menu completo<span class="arr" style="font-style:normal;margin-left:2px">→</span></a>
     </div>
   </section>
 
@@ -837,16 +855,20 @@
 
   // controlo play/pause do vídeo da hero
   // (vídeo em ecrã inteiro; pausa fora do ecrã; com "reduzir movimento" fica o poster)
-  var vc=document.getElementById('vidCtrl'), bg=document.getElementById('heroBg');
-  var userPaused=rm, heroVisible=true;
-  function load(){ if(bg && !bg.getAttribute('src')){ bg.setAttribute('src',bg.getAttribute('data-src')); bg.load(); } }
+  var vc=document.getElementById('vidCtrl'), bg=document.getElementById('heroBg'), bl=document.getElementById('heroBlur');
+  var userPaused=rm, heroVisible=true, wide=window.matchMedia('(min-aspect-ratio: 4/5)');
+  function arm(v){ if(v && !v.getAttribute('src')){ v.setAttribute('src',v.getAttribute('data-src')); v.load(); } }
+  function load(){ arm(bg); if(wide.matches) arm(bl); }
   function sync(){
-    if(!bg || !bg.getAttribute('src')) return;
-    if(userPaused||!heroVisible) bg.pause();
-    else { var p=bg.play(); if(p&&p.catch) p.catch(function(){}); }
+    [bg,bl].forEach(function(v){
+      if(!v || !v.getAttribute('src')) return;
+      if(userPaused||!heroVisible||(v===bl&&!wide.matches)) v.pause();
+      else { var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+    });
   }
   if(bg){
     if(!rm){ load(); sync(); }
+    if(wide.addEventListener) wide.addEventListener('change',function(){ if(!userPaused) load(); sync(); });
     new IntersectionObserver(function(es){ heroVisible=es[0].isIntersecting; sync(); }).observe(document.getElementById('top'));
   }
   if(bg&&vc){
