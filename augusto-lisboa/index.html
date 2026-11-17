@@ -229,6 +229,25 @@
   .split .sub{font-family:var(--disp); font-style:italic; font-weight:300; font-size:18px; color:#e9ddd0; max-width:34ch}
   .split .row{display:flex; align-items:center; gap:14px; flex-wrap:wrap; color:var(--cream)}
 
+  /* ============ TIME TO EAT (colagem: tipo gigante + polaroids com fita) ============ */
+  .tte2{position:relative; overflow:hidden; padding:80px 16px 70px; text-align:center;
+    background:linear-gradient(rgba(252,244,236,.74),rgba(252,244,236,.82)), url("assets/azulejo-rosa.jpg") center/cover}
+  .tte2-type{position:relative; z-index:1; font-family:var(--anton); text-transform:uppercase; color:var(--sage-deep);
+    font-size:clamp(84px,27vw,230px); line-height:.82; letter-spacing:-.01em}
+  .tte2-type span{display:block}
+  .tte2-pics{position:relative; z-index:2; display:flex; justify-content:center; align-items:flex-start; margin:-26px auto 0; max-width:940px}
+  @media(min-width:760px){.tte2-pics{margin-top:-70px}}
+  .tp{flex:none; position:relative; width:min(36vw,280px); margin:0 -3vw; background:#fff; padding:8px 8px 28px; border-radius:2px;
+    box-shadow:0 18px 38px rgba(42,28,26,.26); transition:rotate .5s cubic-bezier(.2,.7,.2,1), scale .5s cubic-bezier(.2,.7,.2,1)}
+  @media(min-width:760px){.tp{margin:0 -22px; padding:10px 10px 36px}}
+  .tp1{rotate:-6deg; translate:0 26px} .tp2{rotate:3deg; z-index:2} .tp3{rotate:7deg; translate:0 34px}
+  .tp:hover{rotate:0deg; scale:1.04; z-index:3}
+  .tp img{width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:1px}
+  .tp figcaption{margin-top:9px; font-family:var(--script); font-size:clamp(14px,4vw,21px); line-height:1; color:var(--ink)}
+  .tp .tk{position:absolute; top:-9px; left:50%; width:58px; height:18px; translate:-50% 0; rotate:-3deg;
+    background:rgba(214,180,106,.78); border:1px dashed rgba(42,28,26,.22); border-radius:2px}
+  .tte2-cap{position:relative; z-index:2; margin:58px 0 0; font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft)}
+
   /* ============ HORA DE COMER (letras espalhadas sobre foto — Time to Eat) ============ */
   .tte{position:relative; min-height:92svh; overflow:hidden; display:grid; place-items:center; padding:72px 16px;
     background:#241318 url("assets/hero-poster.jpg") center/cover no-repeat}
@@ -491,7 +510,7 @@
   <!-- HERO -->
   <header class="hero" id="top">
     <div class="hero-bg" aria-hidden="true">
-      <video id="heroBg" muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" data-src="assets/hero.mp4"></video>
+      <video id="heroBg" muted loop playsinline preload="auto" poster="assets/hero-poster-v2.jpg" data-src="assets/hero-v2.mp4"></video>
     </div>
     <div class="hero-top">
       <div class="micro">Alfama<br>&amp; Belém</div>
@@ -564,14 +583,16 @@
     </div>
   </section>
 
-  <!-- POSTER: Time to Eat -->
-  <section class="story story-time" aria-label="Time to eat">
- <div class="story-stage">
- <img class="time-photo build-piece" src="assets/pancake-maos.jpg" alt="Panquecas com fruta e talheres dourados" loading="lazy" width="1000" height="1245">
- <h2 class="time-type"><span class="build-word" style="--i:0">TIME</span><span class="build-word" style="--i:1">TO</span><span class="build-word" style="--i:2">EAT</span></h2>
- <svg class="time-hands build-piece" viewBox="0 0 1000 1245" aria-hidden="true"><defs><clipPath id="time-hands-mask"><path d="M0 0 L252 0 Q320 44 346 105 L355 251 Q353 319 332 350 L306 342 L291 284 Q265 316 235 303 L202 283 L174 252 L149 208 L140 154 L0 168 Z M1000 322 Q923 306 871 290 Q836 278 814 311 L759 388 Q727 440 734 474 L752 479 L778 437 Q764 512 788 532 Q811 537 826 496 L847 470 Q878 491 895 463 L918 443 L1000 424 Z"/></clipPath></defs><image href="assets/pancake-maos.jpg" width="1000" height="1245" preserveAspectRatio="none" clip-path="url(#time-hands-mask)"/></svg><div class="time-signature build-piece"><span class="wm" role="img" aria-label="Augusto Lisboa"></span></div>
- </div><div class="story-margin" aria-hidden="true">SÓ MAIS UMA DENTADA <span>FEITO COM AMOR</span></div>
-</section>
+  <!-- TIME TO EAT (colagem sobre o azulejo rosa) -->
+  <section class="tte2" aria-label="Time to eat">
+    <h2 class="tte2-type wipe"><span>Time</span><span>to eat</span></h2>
+    <div class="tte2-pics reveal">
+      <figure class="tp tp1"><span class="tk" aria-hidden="true"></span><img src="assets/pancake-maos.jpg" alt="Panquecas com fruta e talheres dourados" loading="lazy" width="1000" height="1245"><figcaption>Pancake se faz favor</figcaption></figure>
+      <figure class="tp tp2"><span class="tk" aria-hidden="true"></span><img src="assets/avo-ovo.jpg" alt="Tosta de abacate com ovo" loading="lazy"><figcaption>A classic, not so classic</figcaption></figure>
+      <figure class="tp tp3"><span class="tk" aria-hidden="true"></span><img src="assets/pancake-coco.jpg" alt="Panquecas caseiras com coco" loading="lazy"><figcaption>Pancake paradise</figcaption></figure>
+    </div>
+    <p class="tte2-cap">Só mais uma dentada · feito com amor</p>
+  </section>
 
   <!-- GALLERY -->
   <section class="gal-wrap grainy" id="galeria">
